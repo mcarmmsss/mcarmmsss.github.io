@@ -169,7 +169,7 @@ const decks = {
     ["Parget Work", "raised decorative plasterwork or render, usually applied to the outside of timber-framed buildings."],
     ["Strap Work", "decorative motif, in flat relief, consisting variously of interlaced scrollwork, braiding, shield forms, or cross-hatching, often pierced with circular or oval holes. At times strapwork is bordered with a raised fillet (band)."],
     ["Cartouche", "Shield"]
-    ["Lozengens" "Oval Potrusions"],
+    ["Lozengens", "Oval Potrusions"],
     ["Bosses", "Circular Potrusions"],
     ["Grotesques", "ward off evil spirits"],
     ["Protestant Reformation", "revolt against the Roman Catholic Church."],
