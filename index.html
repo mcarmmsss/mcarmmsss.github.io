@@ -32,9 +32,7 @@
   </style>
 </head>
 <body>
-
 <header>🌸 Mc's Workspace 🌸 💕</header>
-
 <div class="container">
   <!-- FLASHCARDS -->
   <div class="card">
@@ -55,12 +53,10 @@
     <p>Score: <span id="score">0</span> 🎀 <span id="savedScore"></span></p>
     <button id="nextBtn" onclick="nextQuestion()" disabled>Next ♡</button>
   </div>
-
   <!-- SIDE PANEL -->
   <div class="card">
     <h2>📝 Notes 🎀</h2>
     <textarea placeholder="Sulat ka dito nak... 💭"></textarea>
-
     <h2>⏱ Pomodoro</h2>
     <div style="text-align:center; margin:15px 0;">
       <img src="images/hello-kitty-study.png" style="width:140px; margin-bottom:10px;" alt="kitty studying">
@@ -73,9 +69,7 @@
     <button onclick="resetPomodoro()">Reset ♡</button>
     <button onclick="testSound()" style="background:#ffb6c1; margin-left:10px;">Test Sound ♡</button>
     <ul id="log" style="list-style:none; padding:0; margin-top:15px;"></ul>
-
     <button onclick="toggleCustomizer()" style="margin-top:20px; background:#ff69b4;">✨ Customize Stickers</button>
-
     <div id="customizer">
       <h2 style="margin-top:0;">🎀 Change Your Stickers!</h2>
       <p style="font-size:0.9rem; color:#888;">File names or URLs ♡</p>
@@ -87,7 +81,6 @@
       <label>Study Kitty:</label><input id="imgStudy" value="hello-kitty-study.png">
       <button onclick="updateImages()" style="background:#ff69b4; margin-top:15px;">Update ♡</button>
     </div>
-
     <!-- Deck Adder -->
     <h2 style="margin-top:25px;">➕ Add Cards</h2>
     <select id="addDeckSelect"></select>
@@ -98,22 +91,23 @@
     <div id="currentCards" class="card-list"></div>
   </div>
 </div>
-
 <!-- FLOATING STICKERS -->
 <img src="images/hello-kitty.png" class="sticker" style="bottom:30px;right:40px;">
 <img src="images/my-melody.png" class="sticker" style="top:80px;left:50px;width:90px;animation-delay:1s;">
 <img src="images/cinnamoroll.png" class="sticker" style="bottom:120px;left:60px;width:70px;animation-delay:2s;">
 <img src="images/kuromi.png" class="sticker" style="top:150px;right:70px;width:85px;animation-delay:3s;">
 <img src="images/hello-kitty2.png" class="sticker" style="bottom:200px;right:150px;width:60px;animation-delay:1.5s;">
-
 <!-- Pomodoro Finish Sound -->
 <audio id="finishSound" preload="auto">
   <source src="sounds/finish.mp3" type="audio/mpeg">
   Your browser doesn't support audio.
 </audio>
 
-<script src="decks.js"></script>
 <script>
+// === Your decks.js content should go here if you have it ===
+// For now using empty fallback – add your decks here or keep using localStorage
+const decks = {};   // ← put your original decks object here if you have one
+
 // Normalize for accents/special chars
 function normalize(str) {
   return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
@@ -174,6 +168,8 @@ function shuffleArray(array) {
 
 function loadDeck() {
   const deckName = deckSelect.value;
+  if (!deckName) return;
+  
   currentDeck = allDecks[deckName] || [];
   shuffledDeck = shuffleArray(currentDeck);
   index = 0;
@@ -195,6 +191,20 @@ function showQuestion() {
     return;
   }
 
+  // Remove old progress indicator
+  const oldProgress = document.querySelector(".progress-indicator");
+  if (oldProgress) oldProgress.remove();
+
+  // Add progress indicator
+  const progress = document.createElement("div");
+  progress.className = "progress-indicator";
+  progress.style.fontSize = "1rem";
+  progress.style.color = "#ff9fcf";
+  progress.style.marginBottom = "12px";
+  progress.style.fontWeight = "600";
+  progress.textContent = `Card ${index + 1} of ${shuffledDeck.length}`;
+  questionEl.prepend(progress);
+
   const card = shuffledDeck[index];
   const term = card[0];
   const answer = card[1];
@@ -209,35 +219,37 @@ function showQuestion() {
   const allDefs = currentDeck.map(c => c[1]);
 
   if (currentMode === 'multiple') {
-    questionEl.textContent = term;
+    questionEl.lastChild.textContent = term;
     let options = [answer];
     while (options.length < 4 && allDefs.length > options.length) {
       const rand = allDefs[Math.floor(Math.random() * allDefs.length)];
       if (!options.includes(rand)) options.push(rand);
     }
-    options.sort(() => Math.random() - 0.5);
+    options = shuffleArray(options);
     options.forEach(ch => {
       const btn = document.createElement("button");
       btn.textContent = ch;
       btn.onclick = () => checkAnswer(ch, answer, btn);
       choicesEl.appendChild(btn);
     });
-  } else if (currentMode === 'reversed') {
-    questionEl.textContent = answer;
+  } 
+  else if (currentMode === 'reversed') {
+    questionEl.lastChild.textContent = answer;
     let options = [term];
     while (options.length < 4 && allTerms.length > options.length) {
       const rand = allTerms[Math.floor(Math.random() * allTerms.length)];
       if (!options.includes(rand)) options.push(rand);
     }
-    options.sort(() => Math.random() - 0.5);
+    options = shuffleArray(options);
     options.forEach(ch => {
       const btn = document.createElement("button");
       btn.textContent = ch;
       btn.onclick = () => checkAnswer(ch, term, btn);
       choicesEl.appendChild(btn);
     });
-  } else if (currentMode === 'identification') {
-    questionEl.textContent = answer;
+  } 
+  else if (currentMode === 'identification') {
+    questionEl.lastChild.textContent = answer;
     typedArea.style.display = "block";
     typedInput.value = "";
     typedInput.focus();
@@ -248,6 +260,7 @@ function checkAnswer(choice, correct, btn) {
   if (answered) return;
   answered = true;
   nextBtn.disabled = false;
+
   if (choice === correct) {
     score++;
     scoreEl.textContent = score;
@@ -274,6 +287,7 @@ function checkTyped() {
   const correct = normalize(shuffledDeck[index][0]);
   answered = true;
   nextBtn.disabled = false;
+
   if (user === correct) {
     score++;
     scoreEl.textContent = score;
@@ -289,19 +303,38 @@ function checkTyped() {
 }
 
 function nextQuestion() {
-  index = (index + 1) % shuffledDeck.length;
+  index++;
+
+  if (index >= shuffledDeck.length) {
+    index = 0;
+    shuffledDeck = shuffleArray(currentDeck);
+
+    const msg = document.createElement("div");
+    msg.style.color = "#ff7fbf";
+    msg.style.fontWeight = "bold";
+    msg.style.margin = "12px 0";
+    msg.style.fontSize = "1.2rem";
+    msg.textContent = "✦ New round started! ♡ Keep going cutie~";
+    questionEl.prepend(msg);
+    setTimeout(() => { if (msg.parentNode) msg.remove(); }, 5000);
+  }
+
   showQuestion();
 }
 
 function sparkle() {
-  const emojis = ["✨","🌸","💖","🎀","🐱","🍓","🍰","❤️"];
-  const s = document.createElement("div");
-  s.className = "sparkle";
-  s.textContent = emojis[Math.floor(Math.random()*emojis.length)];
-  s.style.left = Math.random()*window.innerWidth + "px";
-  s.style.top = Math.random()*window.innerHeight + "px";
-  document.body.appendChild(s);
-  setTimeout(() => s.remove(), 800);
+  const emojis = ["✨","🌸","💖","🎀","🐱","🍓","🍰","❤️","🌟","♡"];
+  for (let i = 0; i < 3; i++) {
+    setTimeout(() => {
+      const s = document.createElement("div");
+      s.className = "sparkle";
+      s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      s.style.left = Math.random() * window.innerWidth + "px";
+      s.style.top = Math.random() * window.innerHeight + "px";
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 800);
+    }, i * 150);
+  }
 }
 
 // Pomodoro with Pause/Resume
@@ -335,7 +368,7 @@ function pausePomodoro() {
     document.querySelector('button[onclick="pausePomodoro()"]').textContent = "Resume ▶️";
   } else if (isPaused) {
     isPaused = false;
-    startPomodoro();  // resume
+    startPomodoro();
   }
 }
 
@@ -360,7 +393,6 @@ function logSession() {
   li.textContent = `25 min – ${text} 🎀`;
   li.style.margin = "8px 0";
   document.getElementById("log").appendChild(li);
-
   const sound = document.getElementById("finishSound");
   sound.currentTime = 0;
   sound.play().catch(() => {});
@@ -398,22 +430,31 @@ function addCard() {
 function updateCurrentCardsList() {
   const list = document.getElementById("currentCards");
   const deckName = addDeckSelect.value;
-  list.innerHTML = deckName && allDecks[deckName] ? allDecks[deckName].map((c,i) => `<div><strong>${i+1}.</strong> ${c[0]} → ${c[1]}</div>`).join("") : "<em>Select a deck to see cards</em>";
+  list.innerHTML = deckName && allDecks[deckName] 
+    ? allDecks[deckName].map((c,i) => `<div><strong>${i+1}.</strong> ${c[0]} → ${c[1]}</div>`).join("") 
+    : "<em>Select a deck to see cards</em>";
 }
 
 // Customizer
-function toggleCustomizer() { document.getElementById("customizer").classList.toggle("show"); }
+function toggleCustomizer() { 
+  document.getElementById("customizer").classList.toggle("show"); 
+}
+
 function updateImages() {
-  document.querySelectorAll('.sticker').forEach((s,i) => { const v = document.getElementById(`img${i+1}`).value; if (v) s.src = v; });
+  document.querySelectorAll('.sticker').forEach((s,i) => { 
+    const v = document.getElementById(`img${i+1}`).value; 
+    if (v) s.src = v; 
+  });
   const study = document.querySelector('.card img[src*="hello-kitty-study"]');
   if (study) study.src = document.getElementById("imgStudy").value;
   sparkle();
 }
 
 // Init
-loadDeck();
+if (deckSelect.options.length > 0) {
+  deckSelect.selectedIndex = 0;
+  loadDeck();
+}
 </script>
 </body>
-
 </html>
-
