@@ -156,17 +156,38 @@ const decks = {
   // ==============================
   // BAROQUE PERIOD
   // ==============================
-  baroque_period: [
+  id34_definition_of_terms: [
     ["Baroque Period", "1590s–1750; dramatic, emotional, ornate."],
-    ["Reformation", "Protestant challenge to Catholic Church."],
-    ["Counter-Reformation", "Catholic artistic response."],
-    ["Absolute Monarchy", "Unrestricted royal authority."],
-    ["King Louis XIV", "Symbol of French Baroque monarchy."],
-    ["Curves and Diagonals", "Movement over balance."],
-    ["Light and Shadow", "Strong dramatic contrasts."],
-    ["Solomonic Columns", "Twisted shafts."],
-    ["Italian Baroque", "Rome origin; theatrical churches."],
-    ["French Baroque", "Versailles grandeur."],
-    ["English Baroque", "Post-Great Fire rebuilding."]
+    ["History", "branch of knowledge concerned with people past events, especially those involvinghuman affairs; a record or account, usually written and in chronological order, of past events, especially those concerning a particular nation, people, field of knowledge or activity."]
+    ["Art", "Came from the Latin word ars"],
+    ["Architecture", "the science or profession of designing and constructing buildings or other structure."],
+    ["Barocco", "Portoguese word meaning irregular pearl"]
+  ],
+  id34_baroque_architecture: [
+    ["Mannerism", "is a revolt against classicism"],
+    ["Chiaroscuro", "light & dark surfaces are given importance"],
+    ["Parget Work", "raised decorative plasterwork or render, usually applied to the outside of timber-framed buildings."],
+    ["Strap Work", "decorative motif, in flat relief, consisting variously of interlaced scrollwork, braiding, shield forms, or cross-hatching, often pierced with circular or oval holes. At times strapwork is bordered with a raised fillet (band)."],
+    ["Cartouche", "Shield"]
+    ["Lozengens" "Oval Potrusions"],
+    ["Bosses", "Circular Potrusions"],
+    ["Grotesques", "ward off evil spirits"],
+    ["Protestant Reformation", "revolt against the Roman Catholic Church."],
+    ["Council of Trent", "meeting of Catholic leaders in response to the protestant reformation."],
+    ["Counter Reformation", " affirm the church’s vision of Christianity and reform abuses and errors."],
+    ["Rene Descartes", "“I think, therefore I am.”"],
+    ["Thomas Hobbes", "Leviathan"]
+    ["John Locke", "The Mind is a Tabula Rasa."]
+    ["Royal Palace", "For the Royalty"],
+    ["Palazzo/ Chateau", "Elite/Aristocracy"]
+    ["Piazza", "It is usually marked by a district center or node with a fountain and/or sculptures and obelisks"],
+    ["Solomonic Columns", "Columns with twisted shafts"],
+    ["Francesco Borromini", "master of curved-wall architecture"],
+    ["Santo Carlo alle Quatro Fontane", "The church of San Carlo alle Quattro Fontane, also called San Carlino, is a Roman Catholic church in Rome, Italy. The church was designed by the architect Francesco Borromini and it was his first independent commission"]
+  ],
+  id34_baroque_maybe: [
+    ["Johannes Kepler", "Planetary Motion"],
+    ["Galileo Galilei", "Copernican System"],
+    ["Isaac Newton", "Gravity"]
   ]
 };
