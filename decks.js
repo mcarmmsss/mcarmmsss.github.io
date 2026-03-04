@@ -186,11 +186,52 @@ const decks = {
     ["Santo Carlo alle Quatro Fontane", "The church of San Carlo alle Quattro Fontane, also called San Carlino, is a Roman Catholic church in Rome, Italy. The church was designed by the architect Francesco Borromini and it was his first independent commission"],
     ["Carlo Moderno", "Created the Facade for Saint Peter's Basilica"],
     ["Bernini", "Piazza for Saint Peter's Basilica"],
-    ["Tempietto of Bramante", "The Saint Peter's Basilica is an enlarged version of it"]
+    ["Baldacchino", "Bernini created this for the Saint Peter's Basilica"],
+    ["Tempietto of Bramante", "The Saint Paul's Cathedral is an enlarged version of it"],
+    ["Bernini", "The Fountain of Trevi was originally planned by him"],
+    ["Nicola Salvi", "The Fountain of Trevi was designed by him"],
+    ["Guiseppe Pannini", "He completed the Fountain of Trevi"],
+    ["Santa Maria della Salute", "Octagonal in form with Corinthian Columns, built in gratitude for the end of the plague."],
+    ["Acropodium", "Elevated Plinth or Pedestal bearing a statue raised about the substructure"],
+    ["Baldassare Longhena", "Architect of Palzzo Pesaro"],
+    ["Bourgeouisie", "wealthy middle class"]
+    ["Chateau de Vaux le Vicomte", "Exterior has little relevance to the interior, corinthian pilasters, classic cupola but steep roof"],
+    ["Versailles Palace", "Pinaccle of Baroque Opulence."],
+    ["Andre' Le Notre", "Credited for the park of the versailles."],
+    ["Mansart and Charles Le Brun", "Credited for the palace of the versailles"],
+    ["17", "How many lunette windows are overlooking the garden"],
+    ["Charles II", "first restoration monarch after the commonwealth was in sympathy with the lavish ostentation of his cousin Louis XIV carried to such high point in France"],
+    ["Christopher Wren", "Credited for St. Pauls Cathedral"],
+    ["Palladian", "Austere"]
+    ["Church of Santo Tomas de Villanueva", "Miagao Church in Iloilo"],
+    ["Church of San Agustin", "Paoay Church in Ilocos Norte"],
+    ["Our Lady of the Assumption", "Santa Maria Church in Ilocos Sur"],
+    ["Immaculate Conception", "San Agustin Church in Manila"]
+  ],
+    ],
+  id34_baroque_art: [
+    ["il tenebroso", "in dark manner"],
+    ["Caravaggio", "ITALIAN Who painted the Calling of Saint Matthew, The Supper at Emmaus and the Conversion of St. Paul"],
+    ["Bernini", "ITALIAN greatest sculptor in the baroque period and made the ecstacy of Saint Therese in Cornaro Chapel, and Cathedra Petri"],
+    ["Artemisia Gentileschi", "ITALIAN First female painter to be widely known and appreciated, Created Susana and the Elders, Judith and the Paidservant with the head of Holofemes, and La pittura, a self portrait."],
+    ["Guido Reni", "made Aurora"]
+    ["Peter Paul Rubens", "FLEMISH A prince of painters and painter of princes, lived a charmed life, created the rising of the cross and the descent from the cross."],
+    ["Sir Anthony Van Dyck", "FLEMISH Arrested Movement and flatters his subjects in paint"
+     ["Frans Hals", "DUTC capture fleeting expression, signature like slashing"],
+     ["Rembrandt Van Rijn", "DUTCH Greatest Dutch master of the 17th century, rich but went broke, made many portraits."],
+     ["Johannes Vermeer", "DUTCH Used the Camera Obscura to aid his accuracy"],
+     ["Diego Velazguez", "SPANISH Started young and made Las meninas. Humanized the stiff formal court, master of realism with loose brush strokes."],
+     ["William Hogarth", "ENGLISH Invented the genre of comic strip, first political cartoonist"],
+     ["Thomas Gainsborough", "ENGLISH Chill"],
+     ["Joshua Reynolds", "ENGLISH not Chill"],
+     ["Nicolas Poussin", "FRENCH but worked in rome lol i lwk dont like his stuff but he painted the maniera magnifica."],
+     ["Claude Lorrain", "FRENCH also drawn to Italy where he painted idyllic scenes of italian countryside"],
   ],
   id34_baroque_maybe: [
     ["Johannes Kepler", "Planetary Motion"],
     ["Galileo Galilei", "Copernican System"],
-    ["Isaac Newton", "Gravity"]
+    ["Isaac Newton", "Gravity"],
+    ["Michaelangelo Merisi De Caravaggio", "Full name of Caravaggio"],
+    ["Egis Quirin Asam", "GERMAN Made the assumption of the virgin"]
   ]
 };
