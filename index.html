@@ -5,6 +5,8 @@
   <title>🌸 Mc's Workspace 🌸</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    /* ────────────────────────────────────────────── */
+    /* Your original CSS is unchanged – keeping it here */
     body { margin:0; font-family:'Montserrat',sans-serif; background:#ffeaf3 url('images/bg.jpg') center/cover no-repeat fixed; color:#5a3b4d; min-height:100vh; }
     header { text-align:center; padding:20px; font-size:2.2rem; font-weight:600; background:#ffd6e8; border-bottom:4px solid #ff9fcf; }
     .container { display:grid; grid-template-columns:2fr 1fr; gap:20px; padding:20px; max-width:1400px; margin:0 auto; }
@@ -53,6 +55,7 @@
     <p>Score: <span id="score">0</span> 🎀 <span id="savedScore"></span></p>
     <button id="nextBtn" onclick="nextQuestion()" disabled>Next ♡</button>
   </div>
+
   <!-- SIDE PANEL -->
   <div class="card">
     <h2>📝 Notes 🎀</h2>
@@ -91,29 +94,30 @@
     <div id="currentCards" class="card-list"></div>
   </div>
 </div>
+
 <!-- FLOATING STICKERS -->
 <img src="images/hello-kitty.png" class="sticker" style="bottom:30px;right:40px;">
 <img src="images/my-melody.png" class="sticker" style="top:80px;left:50px;width:90px;animation-delay:1s;">
 <img src="images/cinnamoroll.png" class="sticker" style="bottom:120px;left:60px;width:70px;animation-delay:2s;">
 <img src="images/kuromi.png" class="sticker" style="top:150px;right:70px;width:85px;animation-delay:3s;">
 <img src="images/hello-kitty2.png" class="sticker" style="bottom:200px;right:150px;width:60px;animation-delay:1.5s;">
+
 <!-- Pomodoro Finish Sound -->
 <audio id="finishSound" preload="auto">
   <source src="sounds/finish.mp3" type="audio/mpeg">
   Your browser doesn't support audio.
 </audio>
 
-<script>
-// === Your decks.js content should go here if you have it ===
-// For now using empty fallback – add your decks here or keep using localStorage
-const decks = {};   // ← put your original decks object here if you have one
+<!-- Load your original decks file here -->
+<script src="decks.js"></script>
 
+<script>
 // Normalize for accents/special chars
 function normalize(str) {
   return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 }
 
-// Decks from localStorage or fallback to decks.js
+// Decks from localStorage or fallback to decks.js (which is now loaded above)
 let allDecks = JSON.parse(localStorage.getItem("userDecks")) || { ...decks };
 if (Object.keys(allDecks).length === 0) {
   allDecks = { ...decks };
@@ -184,16 +188,15 @@ function loadDeck() {
 
 function showQuestion() {
   if (!shuffledDeck.length) {
-    questionEl.textContent = "No cards yet... add some below! 💕";
+    questionEl.innerHTML = "No cards yet... add some below! 💕";
     choicesEl.innerHTML = "";
     typedArea.style.display = "none";
     nextBtn.disabled = true;
     return;
   }
 
-  // Remove old progress indicator
-  const oldProgress = document.querySelector(".progress-indicator");
-  if (oldProgress) oldProgress.remove();
+  // Clear old progress / messages but keep question area clean
+  questionEl.innerHTML = '';
 
   // Add progress indicator
   const progress = document.createElement("div");
@@ -203,7 +206,7 @@ function showQuestion() {
   progress.style.marginBottom = "12px";
   progress.style.fontWeight = "600";
   progress.textContent = `Card ${index + 1} of ${shuffledDeck.length}`;
-  questionEl.prepend(progress);
+  questionEl.appendChild(progress);
 
   const card = shuffledDeck[index];
   const term = card[0];
@@ -218,8 +221,12 @@ function showQuestion() {
   const allTerms = currentDeck.map(c => c[0]);
   const allDefs = currentDeck.map(c => c[1]);
 
+  let questionText = document.createElement("span");
+  questionText.style.fontSize = "1.4rem";
+  questionEl.appendChild(questionText);
+
   if (currentMode === 'multiple') {
-    questionEl.lastChild.textContent = term;
+    questionText.textContent = term;
     let options = [answer];
     while (options.length < 4 && allDefs.length > options.length) {
       const rand = allDefs[Math.floor(Math.random() * allDefs.length)];
@@ -234,7 +241,7 @@ function showQuestion() {
     });
   } 
   else if (currentMode === 'reversed') {
-    questionEl.lastChild.textContent = answer;
+    questionText.textContent = answer;
     let options = [term];
     while (options.length < 4 && allTerms.length > options.length) {
       const rand = allTerms[Math.floor(Math.random() * allTerms.length)];
@@ -249,7 +256,7 @@ function showQuestion() {
     });
   } 
   else if (currentMode === 'identification') {
-    questionEl.lastChild.textContent = answer;
+    questionText.textContent = answer;
     typedArea.style.display = "block";
     typedInput.value = "";
     typedInput.focus();
@@ -337,7 +344,7 @@ function sparkle() {
   }
 }
 
-// Pomodoro with Pause/Resume
+// Pomodoro, addCard, customizer, etc. — unchanged from previous version
 let time = 1500;
 let interval = null;
 let isPaused = false;
@@ -409,7 +416,6 @@ function testSound() {
     });
 }
 
-// Deck adder
 function addCard() {
   let deckName = addDeckSelect.value || document.getElementById("newDeckName").value.trim().toLowerCase().replace(/\s+/g, '_');
   if (!deckName) return alert("Pick or type a deck name!");
@@ -435,7 +441,6 @@ function updateCurrentCardsList() {
     : "<em>Select a deck to see cards</em>";
 }
 
-// Customizer
 function toggleCustomizer() { 
   document.getElementById("customizer").classList.toggle("show"); 
 }
