@@ -158,7 +158,7 @@ const decks = {
   // ==============================
   id34_definition_of_terms: [
     ["Baroque Period", "1590s–1750; dramatic, emotional, ornate."],
-    ["History", "branch of knowledge concerned with people past events, especially those involvinghuman affairs; a record or account, usually written and in chronological order, of past events, especially those concerning a particular nation, people, field of knowledge or activity."]
+    ["History", "branch of knowledge concerned with people past events, especially those involvinghuman affairs; a record or account, usually written and in chronological order, of past events, especially those concerning a particular nation, people, field of knowledge or activity."],
     ["Art", "Came from the Latin word ars"],
     ["Architecture", "the science or profession of designing and constructing buildings or other structure."],
     ["Barocco", "Portoguese word meaning irregular pearl"]
@@ -168,7 +168,7 @@ const decks = {
     ["Chiaroscuro", "light & dark surfaces are given importance"],
     ["Parget Work", "raised decorative plasterwork or render, usually applied to the outside of timber-framed buildings."],
     ["Strap Work", "decorative motif, in flat relief, consisting variously of interlaced scrollwork, braiding, shield forms, or cross-hatching, often pierced with circular or oval holes. At times strapwork is bordered with a raised fillet (band)."],
-    ["Cartouche", "Shield"]
+    ["Cartouche", "Shield"],
     ["Lozengens", "Oval Potrusions"],
     ["Bosses", "Circular Potrusions"],
     ["Grotesques", "ward off evil spirits"],
@@ -176,10 +176,10 @@ const decks = {
     ["Council of Trent", "meeting of Catholic leaders in response to the protestant reformation."],
     ["Counter Reformation", " affirm the church’s vision of Christianity and reform abuses and errors."],
     ["Rene Descartes", "“I think, therefore I am.”"],
-    ["Thomas Hobbes", "Leviathan"]
-    ["John Locke", "The Mind is a Tabula Rasa."]
+    ["Thomas Hobbes", "Leviathan"],
+    ["John Locke", "The Mind is a Tabula Rasa."],
     ["Royal Palace", "For the Royalty"],
-    ["Palazzo/ Chateau", "Elite/Aristocracy"]
+    ["Palazzo/ Chateau", "Elite/Aristocracy"],
     ["Piazza", "It is usually marked by a district center or node with a fountain and/or sculptures and obelisks"],
     ["Solomonic Columns", "Columns with twisted shafts"],
     ["Francesco Borromini", "master of curved-wall architecture"],
