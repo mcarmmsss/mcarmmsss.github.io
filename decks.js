@@ -183,7 +183,10 @@ const decks = {
     ["Piazza", "It is usually marked by a district center or node with a fountain and/or sculptures and obelisks"],
     ["Solomonic Columns", "Columns with twisted shafts"],
     ["Francesco Borromini", "master of curved-wall architecture"],
-    ["Santo Carlo alle Quatro Fontane", "The church of San Carlo alle Quattro Fontane, also called San Carlino, is a Roman Catholic church in Rome, Italy. The church was designed by the architect Francesco Borromini and it was his first independent commission"]
+    ["Santo Carlo alle Quatro Fontane", "The church of San Carlo alle Quattro Fontane, also called San Carlino, is a Roman Catholic church in Rome, Italy. The church was designed by the architect Francesco Borromini and it was his first independent commission"],
+    ["Carlo Moderno", "Created the Facade for Saint Peter's Basilica"],
+    ["Bernini", "Piazza for Saint Peter's Basilica"],
+    ["Tempietto of Bramante", "The Saint Peter's Basilica is an enlarged version of it"]
   ],
   id34_baroque_maybe: [
     ["Johannes Kepler", "Planetary Motion"],
