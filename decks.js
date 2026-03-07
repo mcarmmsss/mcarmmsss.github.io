@@ -138,7 +138,7 @@ const flashcardData = {
         ["Yang", "Active, Bright, and Masculine"],
         ["Bilateral Symmetry", "Ensures balance in architectural design.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJR-ZQv0X4sn8bImZM17knOQUp290TIRdCsg&s"],
         ["Courtyards and Gardens", "Open spaces within buildings for relaxation or social gatherings."],
-        ["Enclosure", "Surroundin walls providing privacy and security".]
+        ["Enclosure", "Surroundin walls providing privacy and security"],
         ["Hierarchy", "Importance of architectural elements in design."],
         ["Horizontal Accentuation", "Emphasizes horizontal lines in architecture"],
         ["South-facing", "Orientation believed to bring prosperity and warmth"],
