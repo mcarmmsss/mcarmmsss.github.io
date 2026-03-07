@@ -1,5 +1,4 @@
 // decks.js – Main Topic → Subject / Period → Deck name → cards
-
 const flashcardData = {
   "ID 24": {
     "Philippines": {
@@ -133,12 +132,12 @@ const flashcardData = {
         ["wood, fire, earth, metal, and water", "The five elements"],
         ["Semi Circle or U-Shape", "Sofas and Chairs should be placed this way to encourage conversation and social interaction"],
         ["Mirror", "Can amplify or redirect energy"],
-        ["Yin and Yang", "Represent the duality and interdpendence of opposing forces in the Universe"],
+        ["Yin and Yang", "Represent the duality and interdependence of opposing forces in the Universe"],
         ["Yin", "Passive, Dark, and Feminine"],
         ["Yang", "Active, Bright, and Masculine"],
         ["Bilateral Symmetry", "Ensures balance in architectural design.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJR-ZQv0X4sn8bImZM17knOQUp290TIRdCsg&s"],
         ["Courtyards and Gardens", "Open spaces within buildings for relaxation or social gatherings."],
-        ["Enclosure", "Surroundin walls providing privacy and security"],
+        ["Enclosure", "Surrounding walls providing privacy and security."],
         ["Hierarchy", "Importance of architectural elements in design."],
         ["Horizontal Accentuation", "Emphasizes horizontal lines in architecture"],
         ["South-facing", "Orientation believed to bring prosperity and warmth"],
@@ -149,8 +148,8 @@ const flashcardData = {
         ["Flying eaves", "also known as the swallowtail or upturned eaves. The ends of the roof eaves are gracefully curved upward, resembling the wings of a flying bird. It represents freedom, protection, and the ability to ward off evil spirits", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOf7eDB0Kg0_3GhUTFy1gsn8KwWRpQ1pYGMQ&s"],
         ["Dougong", "Ornate ridge decoration", "https://i.pinimg.com/236x/8c/1f/95/8c1f9526575d877128aed8bdebbcc076.jpg"],
         ["Courtyards", "considered crucial to bringing harmony and good fortune"],
-        ["Moon Gate", "Shape of the half moon in the summer. Since the gates were originally found only in the houses of rich people, they represent the symbol of wealth. There are some other interpretations such as family unity or symbol of birth and renewal or rejuvanation, thanks to its circular shame and moon symbolism", "https://www.shutterstock.com/image-photo/montreal-quebec-canada-2022-botanical-600nw-2189283819.jpg"],
-        ["Siheyuan", "Traditional courtyard house and rooms are aranged around a central coourtyard"],
+        ["Moon Gate", "Shape of the half moon in the summer. Since the gates were originally found only in the houses of rich people, they represent the symbol of wealth. There are some other interpretations such as family unity or symbol of birth and renewal or rejuvenation, thanks to its circular shape and moon symbolism", "https://www.shutterstock.com/image-photo/montreal-quebec-canada-2022-botanical-600nw-2189283819.jpg"],
+        ["Siheyuan", "Traditional courtyard house and rooms are arranged around a central courtyard"],
         ["north-south", "Siheyuan follows a strict ______ axis for feng shui and hierarchy"],
         ["North side", "main hall, highest status and reserved for elders"],
         ["East/West wings", "Younger generations, guest, storage"],
@@ -178,7 +177,7 @@ const flashcardData = {
         ["Snake", "Animal of Black"],
         ["Winter", "Season of Black"]
       ],
-      maybe: [ 
+      maybe: [
         ["Grey bricks, rammed earth, or wooden panelling", "Exterior Walls"],
         ["Wood and movable", "Interior walls"],
         ["Calligraphy, Relief carvings, Lattice Patterns", "Interior walls are decorated with these"],
@@ -186,7 +185,6 @@ const flashcardData = {
       ]
     }
   },
-
   "ID 34": {
     "Baroque Period": {
       definition_of_terms: [
@@ -340,28 +338,23 @@ const flashcardData = {
         ["Grand mirrored galleries", "Interior Feature of French"],
         ["Monumental Staircases", "Interior Feature of English"]
       ]
-    } 
+    }
   }
 };
-
 // ──────────────────────────────────────────────
 // logic logic thingy for dropdown (verify0
 // ──────────────────────────────────────────────
-
 const decks = {};
 const mainTopics = [];
 const mainToSubjects = {};
 const subjectToDecks = {};
-
 Object.keys(flashcardData).forEach(mainTopic => {
   mainTopics.push(mainTopic);
   mainToSubjects[mainTopic] = [];
-
   Object.keys(flashcardData[mainTopic]).forEach(subject => {
     const subjectKey = `${mainTopic}_${subject}`;
     mainToSubjects[mainTopic].push(subject);
     subjectToDecks[subjectKey] = [];
-
     Object.keys(flashcardData[mainTopic][subject]).forEach(deckName => {
       const deckKey = `${subjectKey}_${deckName}`;
       decks[deckKey] = flashcardData[mainTopic][subject][deckName];
@@ -369,7 +362,6 @@ Object.keys(flashcardData).forEach(mainTopic => {
     });
   });
 });
-
 window.decks = decks;
 window.mainTopics = mainTopics;
 window.mainToSubjects = mainToSubjects;
