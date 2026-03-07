@@ -125,6 +125,13 @@ const flashcardData = {
         ["Apartments", "Modern housing blocks."],
         ["Holy Sacrifice Church", "Circular thin-shell concrete chapel (Locsin)."]
       ]
+    },
+    "China": {
+      general: [
+        ["Qi", "Life force or energy that flows through all living things and a vital component of Chinese interior design. It is an energy flow."],
+        ["Feng Shui", "an ancient Chinese practice of arranging buildings, spaces, and objects to harmonize human life with the natural environment. Translating to WIND-WATER, it focuses on directing the flow of qi (energy) to create balance, peace, and prosperity."],
+        ["wood, fire, earth, metal, and water"", "The five elements"]
+      ]
     }
   },
 
@@ -282,6 +289,7 @@ const flashcardData = {
         ["Monumental Staircases", "Interior Feature of English"]
       ]
     }
+    
   }
 };
 
