@@ -154,12 +154,12 @@ const flashcardData = {
         ["north-south", "Siheyuan follows a strict ______ axis for feng shui and hierarchy"],
         ["North side", "main hall, highest status and reserved for elders"],
         ["East/West wings", "Younger generations, guest, storage"],
-        ["South Side" "Entrance and service areas"],
+        ["South Side", "Entrance and service areas"],
         ["Jiangnan House", "Long narrow layout and usually two storeys. Spaces are arranged linearly and has smaller courtyards. Houses are built facing the street with rivers or canals at the back"],
         ["Floors", "Usually brick tiles, stone slabs, or wooden planks. Its slightly elevated and simple and understated"]
       ],
       five_colors: [
-        ["South" "Compass point of red"],
+        ["South", "Compass point of red"],
         ["Fire", "Basic Element of red"],
         ["Bird", "Animal of Red"],
         ["Summer", "Season of Red"],
