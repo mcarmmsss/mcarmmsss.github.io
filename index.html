@@ -142,7 +142,7 @@ function populateMainTopics() {
 // Update subjects
 function updateSubjects() {
   const topic = mainTopicSelect.value;
-  subjectSelect.innerHTML = '<option value="">-- Select Subject / Period --</option>';
+  subjectSelect.innerHTML = '<option value="">-- Select Sub topic --</option>';
   subjectSelect.disabled = !topic;
   if (topic && mainToSubjects[topic]) {
     mainToSubjects[topic].sort().forEach(sub => {
@@ -468,3 +468,4 @@ populateMainTopics();
 </script>
 </body>
 </html>
+
