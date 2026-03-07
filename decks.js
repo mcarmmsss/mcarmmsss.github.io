@@ -130,10 +130,10 @@ const flashcardData = {
       general: [
         ["Qi", "Life force or energy that flows through all living things and a vital component of Chinese interior design. It is an energy flow."],
         ["Feng Shui", "A practice harmonizing elements for positive energy flow"],
-        ["wood, fire, earth, metal, and water", "The five elements"]
+        ["wood, fire, earth, metal, and water", "The five elements"],
         ["Semi Circle or U-Shape", "Sofas and Chairs should be placed this way to encourage conversation and social interaction"],
         ["Mirror", "Can amplify or redirect energy"],
-        ["Yin and Yang", "Represent the duality and interdpendence of opposing forces in the Universe"]
+        ["Yin and Yang", "Represent the duality and interdpendence of opposing forces in the Universe"],
         ["Yin", "Passive, Dark, and Feminine"],
         ["Yang", "Active, Bright, and Masculine"],
         ["Bilateral Symmetry", "Ensures balance in architectural design.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJR-ZQv0X4sn8bImZM17knOQUp290TIRdCsg&s"],
