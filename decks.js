@@ -177,6 +177,41 @@ const flashcardData = {
         ["Snake", "Animal of Black"],
         ["Winter", "Season of Black"]
       ],
+      dynasties: [
+        ["Pre-Han", "Low function spaces within earthen floors. Minimal furniture on open floors. Mats and bronze standa. Ritual vessels as proto-tables. Taoti Moifs", "https://upload.wikimedia.org/wikipedia/commons/5/5f/Bin_Li.jpg"],
+        ["Tang", "Transition to elevated seating, Buddhist influences: symmetry and calmness, Influenced by silk road cultures and interactions, more luxurious and rich, vibrant greens and blues"],
+        ["Ming", "Golden Age of Chinese Interior Design. Interiors emphasized proportion, symmetry, and clarity. Walls are often plain to highlight furniture pieces"],
+        ["Qing", "Highly Decorative and Ornate interiors, Interior became denser fuller and richer, Opulent grand and colorful interiors, manhu-han mix"]
+      ],
+      furnitures_han: [
+        ["Bronzenware", "Pre-han, Bronze inlays, bronze legged tabled, bronze as a symbol of power, made with high level of craftsmanship", "https://www.comuseum.com/wp-content/uploads/2015/07/majiayao_caitao_shuangerguan-768x588.jpg"],
+        ["Kang Platforms", "a traditional, raised, brick or clay heated platform, primarily used for sleeping, sitting, and working in rural Northern China", "https://upload.wikimedia.org/wikipedia/en/thumb/8/8d/Wanderer_warmed_by_kang300.jpg/250px-Wanderer_warmed_by_kang300.jpg"],
+        ["Pingfeng screens", " is a type of free-standing furniture consisting of several frames or panels. It became common during this time. It is typically made with painted silk or lacquer panels. It has functional use and symbolic significance."],
+        ["Huchuang", "Barbarian Seat. Influenced by foreign customs and the migration of buddhism. Its a seat for travelling and hunting."],
+      ],
+      furnitures_ming: [
+      ],
+      furnitures_qing: [
+      ],
+      ceramics: [
+        ["Ru Ware", "Pale blue-green glaze w/ fine crackle", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Ru_Ware_%28cropped%29.JPG/250px-Ru_Ware_%28cropped%29.JPG"],
+        ["Guan Ware", "Subtle gray often crackled gold. literally translates to official ware and is a renowned type of Chinese imperial ceramic made for the Song Dynasty court.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeZqyKCiLE0OKzvRhJIqdsIxivibtSE6TzyQ&s"],
+        ["Ge Ware", "Gray-Green w/warm tones, or ice crackle", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKalEf-2r_MIiqWk2EwvK2Mzgi5EQCpjFbuw&s"],
+        ["Jun ware", "Thich purple-to-blue glaze with fluxing, looks like bruises", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUhbRh6CQFWD3VxWTUuoPVtmlZNOrGUGc-qw&s"],
+        ["Ding Ware", "White Porceilain w/ incision or molding"]
+      ],
+      motifs: [
+        ["Leiwen", "Cloud and thunder patterns", "https://cdn.shopify.com/s/files/1/0714/3686/1732/files/Cloud_and_Thunder_Patterns_480x480.jpg?v=1716866569"],
+        ["Ruyi", "Cloud shaped symbol, for good fortune, longetivity, and prosperity", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXfsvJM47GzvPiRYjstqCfQcJhbfGrqLjQ4Q&s"],
+        ["Lingzhi", "Immortality", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7F1bio2_H-vX0BebYFGBmmbg0PsgYtNtYQA&s"],
+        ["Lattice Patterns", "", "https://images.squarespace-cdn.com/content/v1/5804f817c534a523d780d0eb/1652817476466-WHMCXRWJDMHZAYKFB3N1/Chinese-Lattice_23in_RENDERING-600-WAL.jpg"],
+        ["Phoenix", "Harmony and grace", "https://thumbs.dreamstime.com/b/chinese-phoenix-illustration-traditional-vector-illustration-letters-77746875.jpg"],
+        ["Dragon", "Nobility, Imperial Power, 5 claws", "https://static.vecteezy.com/system/resources/previews/035/562/077/non_2x/traditional-gold-chinese-dragon-design-vector.jpg"],
+        ["Lotus", "Purity", "https://thumbs.dreamstime.com/b/chinese-lotus-pattern-13461532.jpg"],
+        ["Xiangyun", "Auspicious Cloudds, one of the oldest motifs in chinese culture", "https://www.shutterstock.com/image-vector/solid-style-set-traditional-chinese-260nw-2642606377.jpg"],
+        ["Double Marriage", "", "https://cf.ltkcdn.net/feng-shui/images/orig/270294-1600x1066-double-happiness-symbol.jpg"],
+        ["Bats", "Happiness", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcwS79zzBkU0-iw0FEniY2DQcTPh576Wuk6A&s"]
+      ],
       maybe: [
         ["Grey bricks, rammed earth, or wooden panelling", "Exterior Walls"],
         ["Wood and movable", "Interior walls"],
