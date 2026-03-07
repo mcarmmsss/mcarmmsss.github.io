@@ -27,8 +27,7 @@
     label { display:block; margin-top:12px; font-weight:600; color:#ff7fbf; }
     #typedAnswer { font-size:1.2rem; }
     #feedback { font-size:1.3rem; margin:15px 0; min-height:1.5em; }
-    .deck-adder input { margin-bottom:8px; }
-    .card-list { max-height:200px; overflow-y:auto; margin:10px 0; padding:10px; background:#fff8fb; border-radius:10px; font-size:0.95rem; }
+    img.question-img { max-width:90%; max-height:400px; border-radius:16px; margin:15px auto; display:block; box-shadow:0 4px 15px rgba(0,0,0,0.15); }
   </style>
 </head>
 <body>
@@ -37,13 +36,15 @@
   <!-- FLASHCARDS -->
   <div class="card">
     <h2>📚 Flashcards 💖</h2>
-    <select id="deckSelect"></select>
+    <select id="mainTopicSelect"></select>
+    <select id="subjectSelect" disabled style="margin:10px 0;"></select>
+    <select id="deckSelect" disabled></select>
     <select id="modeSelect" style="margin:10px 0;">
       <option value="multiple">Multiple Choice (Term → Description)</option>
       <option value="reversed">Reversed MC (Description → Term)</option>
       <option value="identification">Identification (Type the Term/Name)</option>
     </select>
-    <p id="question" style="font-size:1.4rem; margin:20px 0;"></p>
+    <div id="question" style="font-size:1.4rem; margin:20px 0; text-align:center;"></div>
     <div id="choices" class="choices"></div>
     <div id="typedArea" style="display:none;">
       <input type="text" id="typedAnswer" placeholder="Type the term/name here...">
@@ -53,7 +54,6 @@
     <p>Score: <span id="score">0</span> 🎀 <span id="savedScore"></span></p>
     <button id="nextBtn" onclick="nextQuestion()" disabled>Next ♡</button>
   </div>
-
   <!-- SIDE PANEL -->
   <div class="card">
     <h2>📝 Notes 🎀</h2>
@@ -82,14 +82,6 @@
       <label>Study Kitty:</label><input id="imgStudy" value="hello-kitty-study.png">
       <button onclick="updateImages()" style="background:#ff69b4; margin-top:15px;">Update ♡</button>
     </div>
-    <!-- Deck Adder -->
-    <h2 style="margin-top:25px;">➕ Add Cards</h2>
-    <select id="addDeckSelect"></select>
-    <input id="newDeckName" placeholder="Or type new deck name..." style="margin-top:8px;">
-    <input id="newTerm" placeholder="Term / Name">
-    <textarea id="newDef" placeholder="Description / Definition"></textarea>
-    <button onclick="addCard()">Add Card →</button>
-    <div id="currentCards" class="card-list"></div>
   </div>
 </div>
 
@@ -106,20 +98,14 @@
   Your browser doesn't support audio.
 </audio>
 
-<!-- Load your original decks file here -->
 <script src="decks.js"></script>
-
 <script>
-// Normalize for accents/special chars
+// ──────────────────────────────────────────────
+// Flashcard logic with full image support in ALL modes
+// ──────────────────────────────────────────────
+
 function normalize(str) {
   return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
-}
-
-// Decks from localStorage or fallback to decks.js (which is now loaded above)
-let allDecks = JSON.parse(localStorage.getItem("userDecks")) || { ...decks };
-if (Object.keys(allDecks).length === 0) {
-  allDecks = { ...decks };
-  localStorage.setItem("userDecks", JSON.stringify(allDecks));
 }
 
 let currentDeck = [];
@@ -129,35 +115,62 @@ let score = 0;
 let answered = false;
 let currentMode = 'multiple';
 
-const deckSelect = document.getElementById("deckSelect");
-const addDeckSelect = document.getElementById("addDeckSelect");
-const modeSelect = document.getElementById("modeSelect");
-const questionEl = document.getElementById("question");
-const choicesEl = document.getElementById("choices");
-const typedArea = document.getElementById("typedArea");
-const typedInput = document.getElementById("typedAnswer");
-const feedbackEl = document.getElementById("feedback");
-const scoreEl = document.getElementById("score");
-const savedScoreEl = document.getElementById("savedScore");
-const nextBtn = document.getElementById("nextBtn");
+const mainTopicSelect = document.getElementById("mainTopicSelect");
+const subjectSelect   = document.getElementById("subjectSelect");
+const deckSelect      = document.getElementById("deckSelect");
+const modeSelect      = document.getElementById("modeSelect");
+const questionEl      = document.getElementById("question");
+const choicesEl       = document.getElementById("choices");
+const typedArea       = document.getElementById("typedArea");
+const typedInput      = document.getElementById("typedAnswer");
+const feedbackEl      = document.getElementById("feedback");
+const scoreEl         = document.getElementById("score");
+const savedScoreEl    = document.getElementById("savedScore");
+const nextBtn         = document.getElementById("nextBtn");
 
-// Populate decks
-function populateDecks() {
-  deckSelect.innerHTML = "";
-  addDeckSelect.innerHTML = '<option value="">-- Select or create new --</option>';
-  Object.keys(allDecks).sort().forEach(name => {
+// Populate main topics
+function populateMainTopics() {
+  mainTopicSelect.innerHTML = '<option value="">-- Select Course / Region --</option>';
+  mainTopics.sort().forEach(topic => {
     const opt = document.createElement("option");
-    opt.value = name;
-    opt.textContent = name.replace(/_/g, " ").toUpperCase() + " ♡";
-    deckSelect.appendChild(opt.cloneNode(true));
-    addDeckSelect.appendChild(opt);
+    opt.value = topic;
+    opt.textContent = topic;
+    mainTopicSelect.appendChild(opt);
   });
 }
-populateDecks();
 
-deckSelect.onchange = loadDeck;
-modeSelect.onchange = () => { currentMode = modeSelect.value; showQuestion(); };
-addDeckSelect.onchange = updateCurrentCardsList;
+// Update subjects
+function updateSubjects() {
+  const topic = mainTopicSelect.value;
+  subjectSelect.innerHTML = '<option value="">-- Select Subject / Period --</option>';
+  subjectSelect.disabled = !topic;
+  if (topic && mainToSubjects[topic]) {
+    mainToSubjects[topic].sort().forEach(sub => {
+      const opt = document.createElement("option");
+      opt.value = `${topic}_${sub}`;
+      opt.textContent = sub;
+      subjectSelect.appendChild(opt);
+    });
+  }
+  updateDecks();
+}
+
+// Update decks
+function updateDecks() {
+  const subjectKey = subjectSelect.value;
+  deckSelect.innerHTML = '<option value="">-- Select Deck --</option>';
+  deckSelect.disabled = !subjectKey;
+  if (subjectKey && subjectToDecks[subjectKey]) {
+    subjectToDecks[subjectKey].sort().forEach(deckName => {
+      const fullKey = `${subjectKey}_${deckName}`;
+      const display = deckName.replace(/_/g, " ").toUpperCase() + " ♡";
+      const opt = document.createElement("option");
+      opt.value = fullKey;
+      opt.textContent = display;
+      deckSelect.appendChild(opt);
+    });
+  }
+}
 
 function shuffleArray(array) {
   const copy = [...array];
@@ -169,36 +182,43 @@ function shuffleArray(array) {
 }
 
 function loadDeck() {
-  const deckName = deckSelect.value;
-  if (!deckName) return;
-  
-  currentDeck = allDecks[deckName] || [];
+  const deckKey = deckSelect.value;
+  if (!deckKey) return;
+  currentDeck = decks[deckKey] || [];
   shuffledDeck = shuffleArray(currentDeck);
   index = 0;
-  score = parseInt(localStorage.getItem(`score_${deckName}`)) || 0;
+  score = parseInt(localStorage.getItem(`score_${deckKey}`)) || 0;
   scoreEl.textContent = score;
   savedScoreEl.textContent = `(saved: ${score})`;
   answered = false;
   nextBtn.disabled = true;
   showQuestion();
-  updateCurrentCardsList();
 }
 
 function showQuestion() {
   if (!shuffledDeck.length) {
-    questionEl.innerHTML = "No cards yet... add some below! 💕";
+    questionEl.innerHTML = "No cards in this deck yet... add some in decks.js! 💕";
     choicesEl.innerHTML = "";
     typedArea.style.display = "none";
     nextBtn.disabled = true;
     return;
   }
 
-  // Clear old progress / messages but keep question area clean
+  // Clear everything
   questionEl.innerHTML = '';
+  choicesEl.innerHTML = "";
+  typedArea.style.display = "none";
+  feedbackEl.textContent = "";
+  answered = false;
+  nextBtn.disabled = true;
 
-  // Add progress indicator
+  const card = shuffledDeck[index];
+  const prompt = card[0] || '';   // text prompt (can be empty)
+  const answer = card[1];
+  const image  = card[2] || '';   // image URL
+
+  // Progress
   const progress = document.createElement("div");
-  progress.className = "progress-indicator";
   progress.style.fontSize = "1rem";
   progress.style.color = "#ff9fcf";
   progress.style.marginBottom = "12px";
@@ -206,25 +226,45 @@ function showQuestion() {
   progress.textContent = `Card ${index + 1} of ${shuffledDeck.length}`;
   questionEl.appendChild(progress);
 
-  const card = shuffledDeck[index];
-  const term = card[0];
-  const answer = card[1];
+  // Container for image + prompt (used in ALL modes)
+  const qContainer = document.createElement("div");
+  qContainer.style.textAlign = "center";
+  qContainer.style.marginBottom = "20px";
 
-  choicesEl.innerHTML = "";
-  typedArea.style.display = "none";
-  feedbackEl.textContent = "";
-  answered = false;
-  nextBtn.disabled = true;
+  if (image) {
+    const img = document.createElement("img");
+    img.src = image;
+    img.className = "question-img";
+    img.alt = "Visual example";
+    qContainer.appendChild(img);
+  }
 
-  const allTerms = currentDeck.map(c => c[0]);
-  const allDefs = currentDeck.map(c => c[1]);
+  if (prompt) {
+    const txt = document.createElement("span");
+    txt.style.fontSize = "1.4rem";
+    txt.style.display = "block";
+    txt.style.marginTop = image ? "15px" : "0";
+    txt.textContent = prompt;
+    qContainer.appendChild(txt);
+  }
 
-  let questionText = document.createElement("span");
-  questionText.style.fontSize = "1.4rem";
-  questionEl.appendChild(questionText);
+  // Pure image hint for identification mode
+  if (image && !prompt && currentMode === 'identification') {
+    const hint = document.createElement("p");
+    hint.style.color = "#ff7fbf";
+    hint.style.fontStyle = "italic";
+    hint.style.marginTop = "10px";
+    hint.textContent = "What is this? Type the name ♡";
+    qContainer.appendChild(hint);
+  }
+
+  questionEl.appendChild(qContainer);
+
+  const allTerms = currentDeck.map(c => c[1]); // answers
+  const allDefs  = currentDeck.map(c => c[0]); // prompts
 
   if (currentMode === 'multiple') {
-    questionText.textContent = term;
+    let qText = prompt || answer;
     let options = [answer];
     while (options.length < 4 && allDefs.length > options.length) {
       const rand = allDefs[Math.floor(Math.random() * allDefs.length)];
@@ -237,10 +277,10 @@ function showQuestion() {
       btn.onclick = () => checkAnswer(ch, answer, btn);
       choicesEl.appendChild(btn);
     });
-  } 
+  }
   else if (currentMode === 'reversed') {
-    questionText.textContent = answer;
-    let options = [term];
+    let qText = answer;
+    let options = [prompt || answer];
     while (options.length < 4 && allTerms.length > options.length) {
       const rand = allTerms[Math.floor(Math.random() * allTerms.length)];
       if (!options.includes(rand)) options.push(rand);
@@ -249,12 +289,11 @@ function showQuestion() {
     options.forEach(ch => {
       const btn = document.createElement("button");
       btn.textContent = ch;
-      btn.onclick = () => checkAnswer(ch, term, btn);
+      btn.onclick = () => checkAnswer(ch, prompt || answer, btn);
       choicesEl.appendChild(btn);
     });
-  } 
+  }
   else if (currentMode === 'identification') {
-    questionText.textContent = answer;
     typedArea.style.display = "block";
     typedInput.value = "";
     typedInput.focus();
@@ -265,7 +304,6 @@ function checkAnswer(choice, correct, btn) {
   if (answered) return;
   answered = true;
   nextBtn.disabled = false;
-
   if (choice === correct) {
     score++;
     scoreEl.textContent = score;
@@ -289,10 +327,9 @@ function checkAnswer(choice, correct, btn) {
 function checkTyped() {
   if (answered) return;
   const user = normalize(typedInput.value);
-  const correct = normalize(shuffledDeck[index][0]);
+  const correct = normalize(shuffledDeck[index][1]);
   answered = true;
   nextBtn.disabled = false;
-
   if (user === correct) {
     score++;
     scoreEl.textContent = score;
@@ -302,18 +339,16 @@ function checkTyped() {
     feedbackEl.innerHTML = "Correct! 🌸💖";
     feedbackEl.style.color = "#4caf50";
   } else {
-    feedbackEl.innerHTML = `No... it's <strong>${shuffledDeck[index][0]}</strong>`;
+    feedbackEl.innerHTML = `No... it's <strong>${shuffledDeck[index][1]}</strong>`;
     feedbackEl.style.color = "#e74c3c";
   }
 }
 
 function nextQuestion() {
   index++;
-
   if (index >= shuffledDeck.length) {
     index = 0;
     shuffledDeck = shuffleArray(currentDeck);
-
     const msg = document.createElement("div");
     msg.style.color = "#ff7fbf";
     msg.style.fontWeight = "bold";
@@ -323,7 +358,6 @@ function nextQuestion() {
     questionEl.prepend(msg);
     setTimeout(() => { if (msg.parentNode) msg.remove(); }, 5000);
   }
-
   showQuestion();
 }
 
@@ -342,7 +376,7 @@ function sparkle() {
   }
 }
 
-// Pomodoro, addCard, customizer, etc. — unchanged from previous version
+// Pomodoro functions (unchanged)
 let time = 1500;
 let interval = null;
 let isPaused = false;
@@ -355,7 +389,7 @@ function startPomodoro() {
       interval = null;
       isPaused = false;
       logSession();
-      alert("Great job cutie! Take a break ♡");
+      alert("Great job girl ♡");
       return;
     }
     time--;
@@ -406,59 +440,31 @@ function logSession() {
 function testSound() {
   const sound = document.getElementById("finishSound");
   sound.currentTime = 0;
-  sound.play()
-    .then(() => console.log("Sound played successfully!"))
-    .catch(e => {
-      console.error("Sound play failed:", e);
-      alert("Sound didn't play! Reasons:\n1. Clicked 'Test Sound' too early? Try clicking anywhere on page first.\n2. File path wrong? Check 'sounds/finish.mp3' exists.\n3. Browser blocked local file audio? Try in Firefox or serve via local server.\n\nCheck console (F12) for details.");
-    });
+  sound.play().catch(() => {});
 }
 
-function addCard() {
-  let deckName = addDeckSelect.value || document.getElementById("newDeckName").value.trim().toLowerCase().replace(/\s+/g, '_');
-  if (!deckName) return alert("Pick or type a deck name!");
-  const term = document.getElementById("newTerm").value.trim();
-  const def = document.getElementById("newDef").value.trim();
-  if (!term || !def) return alert("Fill term and definition!");
-  if (!allDecks[deckName]) allDecks[deckName] = [];
-  allDecks[deckName].push([term, def]);
-  localStorage.setItem("userDecks", JSON.stringify(allDecks));
-  populateDecks();
-  if (deckSelect.value === deckName) loadDeck();
-  updateCurrentCardsList();
-  document.getElementById("newTerm").value = "";
-  document.getElementById("newDef").value = "";
-  document.getElementById("newDeckName").value = "";
-}
-
-function updateCurrentCardsList() {
-  const list = document.getElementById("currentCards");
-  const deckName = addDeckSelect.value;
-  list.innerHTML = deckName && allDecks[deckName] 
-    ? allDecks[deckName].map((c,i) => `<div><strong>${i+1}.</strong> ${c[0]} → ${c[1]}</div>`).join("") 
-    : "<em>Select a deck to see cards</em>";
-}
-
-function toggleCustomizer() { 
-  document.getElementById("customizer").classList.toggle("show"); 
+function toggleCustomizer() {
+  document.getElementById("customizer").classList.toggle("show");
 }
 
 function updateImages() {
-  document.querySelectorAll('.sticker').forEach((s,i) => { 
-    const v = document.getElementById(`img${i+1}`).value; 
-    if (v) s.src = v; 
+  document.querySelectorAll('.sticker').forEach((s,i) => {
+    const v = document.getElementById(`img${i+1}`).value;
+    if (v) s.src = v;
   });
   const study = document.querySelector('.card img[src*="hello-kitty-study"]');
   if (study) study.src = document.getElementById("imgStudy").value;
   sparkle();
 }
 
+// Event listeners
+mainTopicSelect.onchange = updateSubjects;
+subjectSelect.onchange = updateDecks;
+deckSelect.onchange = loadDeck;
+modeSelect.onchange = () => { currentMode = modeSelect.value; showQuestion(); };
+
 // Init
-if (deckSelect.options.length > 0) {
-  deckSelect.selectedIndex = 0;
-  loadDeck();
-}
+populateMainTopics();
 </script>
 </body>
 </html>
-
