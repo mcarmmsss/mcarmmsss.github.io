@@ -129,11 +129,34 @@ const flashcardData = {
     "China": {
       general: [
         ["Qi", "Life force or energy that flows through all living things and a vital component of Chinese interior design. It is an energy flow."],
-        ["Feng Shui", "an ancient Chinese practice of arranging buildings, spaces, and objects to harmonize human life with the natural environment. Translating to WIND-WATER, it focuses on directing the flow of qi (energy) to create balance, peace, and prosperity."],
+        ["Feng Shui", "A practice harmonizing elements for positive energy flow"],
         ["wood, fire, earth, metal, and water", "The five elements"]
         ["Semi Circle or U-Shape", "Sofas and Chairs should be placed this way to encourage conversation and social interaction"],
         ["Mirror", "Can amplify or redirect energy"],
-        ["Yin and Yang", "Represent
+        ["Yin and Yang", "Represent the duality and interdpendence of opposing forces in the Universe"]
+        ["Yin", "Passive, Dark, and Feminine"],
+        ["Yang", "Active, Bright, and Masculine"],
+        ["Bilateral Symmetry", "Ensures balance in architectural design.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJR-ZQv0X4sn8bImZM17knOQUp290TIRdCsg&s"],
+        ["Courtyards and Gardens", "Open spaces within buildings for relaxation or social gatherings."],
+        ["Enclosure", "Surroundin walls providing privacy and security".]
+        ["Hierarchy", "Importance of architectural elements in design."],
+        ["Horizontal Accentuation", "Emphasizes horizontal lines in architecture"],
+        ["South-facing", "Orientation believed to bring prosperity and warmth"],
+        ["Symmetrical Layouts", "Create visual balance and harmony"],
+        ["Walls", "Serve as boundaries and structural support in buildings"],
+        ["Wooden Construction", "Traditional and sustainable building material in Chinese architecture"],
+        ["Glazed ceramic tiles", "In vibrant colors such as red, green, blue, and yellow are commonly used", "https://image.made-in-china.com/202f0j00lVroZPLMZegc/Temple-Roofing-Buddhist-Roofing-Chinese-Green-Glazed-Terracotta-Roof-Tiles.webp"],
+        ["Flying eaves", "also known as the swallowtail or upturned eaves. The ends of the roof eaves are gracefully curved upward, resembling the wings of a flying bird. It represents freedom, protection, and the ability to ward off evil spirits", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOf7eDB0Kg0_3GhUTFy1gsn8KwWRpQ1pYGMQ&s"],
+        ["Dougong", "Ornate ridge decoration", "https://i.pinimg.com/236x/8c/1f/95/8c1f9526575d877128aed8bdebbcc076.jpg"],
+        ["Courtyards", "considered crucial to bringing harmony and good fortune"],
+        ["Moon Gate", "Shape of the half moon in the summer. Since the gates were originally found only in the houses of rich people, they represent the symbol of wealth. There are some other interpretations such as family unity or symbol of birth and renewal or rejuvanation, thanks to its circular shame and moon symbolism", "https://www.shutterstock.com/image-photo/montreal-quebec-canada-2022-botanical-600nw-2189283819.jpg"],
+        ["Siheyuan", "Traditional courtyard house and rooms are aranged around a central coourtyard"],
+        ["north-south", "Siheyuan follows a strict ______ axis for feng shui and hierarchy"],
+        ["North side", "main hall, highest status and reserved for elders"],
+        ["East/West wings", "Younger generations, guest, storage"],
+        ["South Side" "Entrance and service areas"],
+        ["Jiangnan House", "Long narrow layout and usually two storeys. Spaces are arranged linearly and has smaller courtyards. Houses are built facing the street with rivers or canals at the back"],
+        ["Floors", "Usually brick tiles, stone slabs, or wooden planks. Its slightly elevated and simple and understated"]
       ],
       five_colors: [
         ["South" "Compass point of red"],
@@ -155,7 +178,12 @@ const flashcardData = {
         ["Snake", "Animal of Black"],
         ["Winter", "Season of Black"]
       ],
-      bbhs
+      maybe: [ 
+        ["Grey bricks, rammed earth, or wooden panelling", "Exterior Walls"],
+        ["Wood and movable", "Interior walls"],
+        ["Calligraphy, Relief carvings, Lattice Patterns", "Interior walls are decorated with these"],
+        ["Wooden beams", "Ceilings are made of these"]
+      ]
     }
   },
 
