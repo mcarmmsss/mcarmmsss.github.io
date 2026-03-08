@@ -156,6 +156,12 @@ const flashcardData = {
         ["South Side", "Entrance and service areas"],
         ["Jiangnan House", "Long narrow layout and usually two storeys. Spaces are arranged linearly and has smaller courtyards. Houses are built facing the street with rivers or canals at the back"],
         ["Floors", "Usually brick tiles, stone slabs, or wooden planks. Its slightly elevated and simple and understated"]
+        ["Taotie", "Animal Mask, Mythical beast"]
+        ["High Ceiling", "Reverence"],
+        ["Low Ceiling", "Warm, intimate"]
+        ["Wooden Planks", "Used in flooring in the southern parts of China"],
+        ["Giant Wild Goose Pagoda", "It was built c. AD 652 during the Tang dynasty, when Xi'an was the imperial capital.", "https://www.advantour.com/img/china/xian/big-wild-goose-pagoda1.jpg"],
+        ["Literati", "Scholar-Artists"]
       ],
       five_colors: [
         ["South", "Compass point of red"],
@@ -182,16 +188,38 @@ const flashcardData = {
         ["Tang", "Transition to elevated seating, Buddhist influences: symmetry and calmness, Influenced by silk road cultures and interactions, more luxurious and rich, vibrant greens and blues"],
         ["Ming", "Golden Age of Chinese Interior Design. Interiors emphasized proportion, symmetry, and clarity. Walls are often plain to highlight furniture pieces"],
         ["Qing", "Highly Decorative and Ornate interiors, Interior became denser fuller and richer, Opulent grand and colorful interiors, manhu-han mix"]
+        ["Song", "More structured. Development of furniture pieces by scholars, musicians, and artists. Rectangular tables and painting desks."],
+        ["Yuan", "Invested on creative work. Largely influenced by the mongol empire. Interiors have larger spaces and furniture. Pieces were more robust and well rounded. Interiors were designed for mobility"]
       ],
-      furnitures_han: [
+      furnitures_pre_han_to_yuan: [
         ["Bronzenware", "Pre-han, Bronze inlays, bronze legged tabled, bronze as a symbol of power, made with high level of craftsmanship", "https://www.comuseum.com/wp-content/uploads/2015/07/majiayao_caitao_shuangerguan-768x588.jpg"],
-        ["Kang Platforms", "a traditional, raised, brick or clay heated platform, primarily used for sleeping, sitting, and working in rural Northern China", "https://upload.wikimedia.org/wikipedia/en/thumb/8/8d/Wanderer_warmed_by_kang300.jpg/250px-Wanderer_warmed_by_kang300.jpg"],
-        ["Pingfeng screens", " is a type of free-standing furniture consisting of several frames or panels. It became common during this time. It is typically made with painted silk or lacquer panels. It has functional use and symbolic significance."],
-        ["Huchuang", "Barbarian Seat. Influenced by foreign customs and the migration of buddhism. Its a seat for travelling and hunting."],
+        ["Kang Platforms", "Han, a traditional, raised, brick or clay heated platform, primarily used for sleeping, sitting, and working in rural Northern China", "https://upload.wikimedia.org/wikipedia/en/thumb/8/8d/Wanderer_warmed_by_kang300.jpg/250px-Wanderer_warmed_by_kang300.jpg"],
+        ["Pingfeng screens", " Han, is a type of free-standing furniture consisting of several frames or panels. It became common during this time. It is typically made with painted silk or lacquer panels. It has functional use and symbolic significance."],
+        ["Huchuang", "Han, Barbarian Seat. Influenced by foreign customs and the migration of buddhism. Its a seat for travelling and hunting."],
+        ["Gongshi", "Song, Scholars rock is a common decoration in homes of scholars for inspiration"]
+        ["Jiaoyi", "Yuan, Folding Chairs for literati"]
       ],
       furnitures_ming: [
+        ["Yokeback Armchair", "Official's Hat armchair", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOIO0SDybh3tmykF1i8IyVcK3wtr6wFuQnIg&s"],
+        ["Horeshoe-back Armchair", "Formal, curved, has crest-motifs, rattan/wood", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuwkbC6p3IudQIisDPKJjM1Rsd0ywYI2BTyw&s"],
+        ["Lamp-hanger chair", "Similar to yoke but higher and armless, hang lamps at sides", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvOFWV0ACVv9o9H2woboyh39JwIBkdmttgsg&s"],
+        ["Folding Horseshoe-back Armchair", "Metal, late ming, high status, mobile, formal form, foot stool and leather seat", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_68Z1DGBEwiIgsjR03eA4X3BqMF0HdmbKow&s"],
+        ["Square corner cabinets", "For storing books, metal handle, side table, short", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr79V5OV-hRMSbygwz9tjyV77-sM6uqrDTew&s"],
+        ["Round-corner cabinets", "Noodle cabinet, Clothes on top, Mattress down, for quilts and mattreses, wedding cabinet, piece in the middle is removable", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKvRSdC7HD8BUzYBBDzoyqcTxv0NtrJqbkcQ&s"],
+        ["Long Tables", "Console table in hallways, Thin, something about apron?", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRuL18vFYbjp98rCyqwBOPvhOOMt3DGhhzTw&s"],
+        ["Painting Table/Desk", "Zero harang, comes with a foot stool", "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRRnxg2oUVazJ6Tv_HnByBRVeLuMOc90f4u2fvt9Dernvl54h49"]
+        ["Drum Stool", "", "https://img.carters.com.au/2a853a1ab92fdee38bfd35e74da07baa.jpg"],
+        ["Square Stool", "", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-1i4H2lqRodTgppaSqIhF17gqotszkv-MEQ&s"],
+        ["Rose Chair", "Against wall/window opening, not ego?", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvM5XNF5Qr1h0cHPIrz1-JZpok7QagPEBeAo1GJlF78e1F5ptL"],
+        ["Canopy Bed", "medallion", "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQXiOZao6vvfMaqm-KE_10YPh4UKt4MMrbjiPlxSymLe_svi-MC"],
+        ["Huanghuali", "Yellow Rosewood", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT05RvJSCC9WYzlo3B-f8otlmuSUdL_TvoHjA&s"],
+        ["Zitan", "Purple Sandalwood", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_AbupXumEG-WODiZA2aScY0kSAGa5OUZ_jg&s"]
       ],
       furnitures_qing: [
+        ["Baozuo", "Throne chair, wood, zitan, jade wood inlay", "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQagYo5ptboAd-o1A5fwJsHjjFWbTOlK5OxxVdVB95--GoHwjlq"],
+        ["Jiazichuang", "Large canopy ed, grand in size, dragon medal, bear claw legs", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ8bO7xpKVSiD9jrprpWM1Ii9cwgyP3jANDQ&s"],
+        ["Ornate Screens", "Painted, carved, many panels", "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS5gytE4esPfKf9prTe8nI3h7LTsdEZefYB93fT7-sxNush5a78"],
+        ["Bogu Shelf", "Asymmetrical, Display for scholars, antique treasure cabinet", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuuLKrYMjsjlkUUWRdH05yIwPNHko6aPAJhoryIR3-Eg6Pe9iq"]
       ],
       ceramics: [
         ["Ru Ware", "Pale blue-green glaze w/ fine crackle", "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Ru_Ware_%28cropped%29.JPG/250px-Ru_Ware_%28cropped%29.JPG"],
@@ -210,7 +238,7 @@ const flashcardData = {
         ["Lotus", "Purity", "https://thumbs.dreamstime.com/b/chinese-lotus-pattern-13461532.jpg"],
         ["Xiangyun", "Auspicious Cloudds, one of the oldest motifs in chinese culture", "https://www.shutterstock.com/image-vector/solid-style-set-traditional-chinese-260nw-2642606377.jpg"],
         ["Double Marriage", "", "https://cf.ltkcdn.net/feng-shui/images/orig/270294-1600x1066-double-happiness-symbol.jpg"],
-        ["Bats", "Happiness", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcwS79zzBkU0-iw0FEniY2DQcTPh576Wuk6A&s"]
+        ["Bats", "Happiness. Red Bat overflor 3x luck. Sounds like dao, arrive", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcwS79zzBkU0-iw0FEniY2DQcTPh576Wuk6A&s"]
       ],
       maybe: [
         ["Grey bricks, rammed earth, or wooden panelling", "Exterior Walls"],
