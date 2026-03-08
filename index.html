@@ -142,7 +142,7 @@ function populateMainTopics() {
 // Update subjects
 function updateSubjects() {
   const topic = mainTopicSelect.value;
-  subjectSelect.innerHTML = '<option value="">-- Select Sub topic --</option>';
+  subjectSelect.innerHTML = '<option value="">-- Select Subject / Period --</option>';
   subjectSelect.disabled = !topic;
   if (topic && mainToSubjects[topic]) {
     mainToSubjects[topic].sort().forEach(sub => {
@@ -279,17 +279,36 @@ function showQuestion() {
     });
   }
   else if (currentMode === 'reversed') {
-    let qText = answer;
-    let options = [prompt || answer];
-    while (options.length < 4 && allTerms.length > options.length) {
-      const rand = allTerms[Math.floor(Math.random() * allTerms.length)];
-      if (!options.includes(rand)) options.push(rand);
+    // FIXED: Question = description (answer), Correct = term (prompt)
+    let questionText = answer;
+    let correctTerm = prompt || answer; // term is correct answer
+
+    let options = [correctTerm]; // start with correct term
+
+    // Distractors from other terms (exclude current correct one)
+    let distractors = allTerms.filter(t => t !== correctTerm);
+    while (options.length < 4 && distractors.length > 0) {
+      const randIndex = Math.floor(Math.random() * distractors.length);
+      options.push(distractors[randIndex]);
+      distractors.splice(randIndex, 1); // remove used
     }
+
+    // If still short, fallback to prompts
+    if (options.length < 4) {
+      let promptDistractors = allDefs.filter(p => p && p !== correctTerm && !options.includes(p));
+      while (options.length < 4 && promptDistractors.length > 0) {
+        const randIndex = Math.floor(Math.random() * promptDistractors.length);
+        options.push(promptDistractors[randIndex]);
+        promptDistractors.splice(randIndex, 1);
+      }
+    }
+
     options = shuffleArray(options);
+
     options.forEach(ch => {
       const btn = document.createElement("button");
       btn.textContent = ch;
-      btn.onclick = () => checkAnswer(ch, prompt || answer, btn);
+      btn.onclick = () => checkAnswer(ch, correctTerm, btn);
       choicesEl.appendChild(btn);
     });
   }
@@ -468,4 +487,3 @@ populateMainTopics();
 </script>
 </body>
 </html>
-
