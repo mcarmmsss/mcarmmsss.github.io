@@ -158,7 +158,7 @@ const flashcardData = {
         ["Floors", "Usually brick tiles, stone slabs, or wooden planks. Its slightly elevated and simple and understated"]
         ["Taotie", "Animal Mask, Mythical beast"]
         ["High Ceiling", "Reverence"],
-        ["Low Ceiling", "Warm, intimate"]
+        ["Low Ceiling", "Warm, intimate"],
         ["Wooden Planks", "Used in flooring in the southern parts of China"],
         ["Giant Wild Goose Pagoda", "It was built c. AD 652 during the Tang dynasty, when Xi'an was the imperial capital.", "https://www.advantour.com/img/china/xian/big-wild-goose-pagoda1.jpg"],
         ["Literati", "Scholar-Artists"]
@@ -196,7 +196,7 @@ const flashcardData = {
         ["Kang Platforms", "Han, a traditional, raised, brick or clay heated platform, primarily used for sleeping, sitting, and working in rural Northern China", "https://upload.wikimedia.org/wikipedia/en/thumb/8/8d/Wanderer_warmed_by_kang300.jpg/250px-Wanderer_warmed_by_kang300.jpg"],
         ["Pingfeng screens", " Han, is a type of free-standing furniture consisting of several frames or panels. It became common during this time. It is typically made with painted silk or lacquer panels. It has functional use and symbolic significance."],
         ["Huchuang", "Han, Barbarian Seat. Influenced by foreign customs and the migration of buddhism. Its a seat for travelling and hunting."],
-        ["Gongshi", "Song, Scholars rock is a common decoration in homes of scholars for inspiration"]
+        ["Gongshi", "Song, Scholars rock is a common decoration in homes of scholars for inspiration"],
         ["Jiaoyi", "Yuan, Folding Chairs for literati"]
       ],
       furnitures_ming: [
@@ -207,7 +207,7 @@ const flashcardData = {
         ["Square corner cabinets", "For storing books, metal handle, side table, short", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr79V5OV-hRMSbygwz9tjyV77-sM6uqrDTew&s"],
         ["Round-corner cabinets", "Noodle cabinet, Clothes on top, Mattress down, for quilts and mattreses, wedding cabinet, piece in the middle is removable", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKvRSdC7HD8BUzYBBDzoyqcTxv0NtrJqbkcQ&s"],
         ["Long Tables", "Console table in hallways, Thin, something about apron?", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRuL18vFYbjp98rCyqwBOPvhOOMt3DGhhzTw&s"],
-        ["Painting Table/Desk", "Zero harang, comes with a foot stool", "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRRnxg2oUVazJ6Tv_HnByBRVeLuMOc90f4u2fvt9Dernvl54h49"]
+        ["Painting Table/Desk", "Zero harang, comes with a foot stool", "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRRnxg2oUVazJ6Tv_HnByBRVeLuMOc90f4u2fvt9Dernvl54h49"],
         ["Drum Stool", "", "https://img.carters.com.au/2a853a1ab92fdee38bfd35e74da07baa.jpg"],
         ["Square Stool", "", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-1i4H2lqRodTgppaSqIhF17gqotszkv-MEQ&s"],
         ["Rose Chair", "Against wall/window opening, not ego?", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvM5XNF5Qr1h0cHPIrz1-JZpok7QagPEBeAo1GJlF78e1F5ptL"],
