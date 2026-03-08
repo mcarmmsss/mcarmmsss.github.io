@@ -213,9 +213,9 @@ function showQuestion() {
   nextBtn.disabled = true;
 
   const card = shuffledDeck[index];
-  const term = card[0] || '';     // TERM (short name)
-  const description = card[1];    // DESCRIPTION (long text)
-  const image  = card[2] || '';   // image URL
+  const term = card[0] || '';          // TERM (short name, correct for reversed/ID)
+  const description = card[1] || '';   // DESCRIPTION (long text, question for reversed/ID)
+  const image = card[2] || '';
 
   // Progress
   const progress = document.createElement("div");
@@ -239,18 +239,24 @@ function showQuestion() {
     qContainer.appendChild(img);
   }
 
-  questionEl.appendChild(qContainer);
+  // Show question text (different per mode)
+  const txt = document.createElement("span");
+  txt.style.fontSize = "1.4rem";
+  txt.style.display = "block";
+  txt.style.marginTop = image ? "15px" : "0";
 
-  const allTerms = currentDeck.map(c => c[0]); // all terms
-  const allDescriptions = currentDeck.map(c => c[1]); // all descriptions
+  const allTerms = currentDeck.map(c => c[0]).filter(t => t);
+  const allDescriptions = currentDeck.map(c => c[1]).filter(d => d);
 
   if (currentMode === 'multiple') {
     // Term → Description
-    let questionText = term || description;
+    txt.textContent = term || "No term available";
     let options = [description];
-    while (options.length < 4 && allDescriptions.length > options.length) {
-      const rand = allDescriptions[Math.floor(Math.random() * allDescriptions.length)];
-      if (!options.includes(rand)) options.push(rand);
+    let distractors = allDescriptions.filter(d => d !== description);
+    while (options.length < 4 && distractors.length > 0) {
+      const randIndex = Math.floor(Math.random() * distractors.length);
+      options.push(distractors[randIndex]);
+      distractors.splice(randIndex, 1);
     }
     options = shuffleArray(options);
     options.forEach(ch => {
@@ -259,22 +265,13 @@ function showQuestion() {
       btn.onclick = () => checkAnswer(ch, description, btn);
       choicesEl.appendChild(btn);
     });
-    // Show question text
-    const txt = document.createElement("span");
-    txt.style.fontSize = "1.4rem";
-    txt.style.display = "block";
-    txt.style.margin = image ? "15px 0" : "0";
-    txt.textContent = questionText;
-    qContainer.appendChild(txt);
   }
   else if (currentMode === 'reversed') {
     // Description → Term
-    let questionText = description;
+    txt.textContent = description || "No description available";
     let correctTerm = term || description;
     let options = [correctTerm];
-
-    // Distractors from other terms
-    let distractors = allTerms.filter(t => t && t !== correctTerm);
+    let distractors = allTerms.filter(t => t !== correctTerm);
     while (options.length < 4 && distractors.length > 0) {
       const randIndex = Math.floor(Math.random() * distractors.length);
       const distractor = distractors[randIndex];
@@ -283,38 +280,28 @@ function showQuestion() {
       }
       distractors.splice(randIndex, 1);
     }
-
     options = shuffleArray(options);
-
     options.forEach(ch => {
       const btn = document.createElement("button");
       btn.textContent = ch;
       btn.onclick = () => checkAnswer(ch, correctTerm, btn);
       choicesEl.appendChild(btn);
     });
-    // Show question text
-    const txt = document.createElement("span");
-    txt.style.fontSize = "1.4rem";
-    txt.style.display = "block";
-    txt.style.margin = image ? "15px 0" : "0";
-    txt.textContent = questionText;
-    qContainer.appendChild(txt);
   }
   else if (currentMode === 'identification') {
-    // Show description or image, user types term
+    // Show description or image, type term
     typedArea.style.display = "block";
     typedInput.value = "";
     typedInput.focus();
-    // Show description as question if present
     if (description) {
-      const txt = document.createElement("span");
-      txt.style.fontSize = "1.4rem";
-      txt.style.display = "block";
-      txt.style.marginTop = "15px";
       txt.textContent = description;
-      qContainer.appendChild(txt);
+    } else {
+      txt.textContent = "Describe or name what you see ♡";
     }
   }
+
+  qContainer.appendChild(txt);
+  questionEl.appendChild(qContainer);
 }
 
 function checkAnswer(choice, correct, btn) {
@@ -344,7 +331,7 @@ function checkAnswer(choice, correct, btn) {
 function checkTyped() {
   if (answered) return;
   const user = normalize(typedInput.value);
-  const correct = normalize(shuffledDeck[index][0]); // always term
+  const correct = normalize(shuffledDeck[index][0]); // term (card[0])
   answered = true;
   nextBtn.disabled = false;
   if (user === correct) {
