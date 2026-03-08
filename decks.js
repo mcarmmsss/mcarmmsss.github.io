@@ -155,8 +155,8 @@ const flashcardData = {
         ["East/West wings", "Younger generations, guest, storage"],
         ["South Side", "Entrance and service areas"],
         ["Jiangnan House", "Long narrow layout and usually two storeys. Spaces are arranged linearly and has smaller courtyards. Houses are built facing the street with rivers or canals at the back"],
-        ["Floors", "Usually brick tiles, stone slabs, or wooden planks. Its slightly elevated and simple and understated"]
-        ["Taotie", "Animal Mask, Mythical beast"]
+        ["Floors", "Usually brick tiles, stone slabs, or wooden planks. Its slightly elevated and simple and understated"],
+        ["Taotie", "Animal Mask, Mythical beast"],
         ["High Ceiling", "Reverence"],
         ["Low Ceiling", "Warm, intimate"],
         ["Wooden Planks", "Used in flooring in the southern parts of China"],
