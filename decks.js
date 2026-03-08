@@ -187,7 +187,7 @@ const flashcardData = {
         ["Pre-Han", "Low function spaces within earthen floors. Minimal furniture on open floors. Mats and bronze standa. Ritual vessels as proto-tables. Taoti Moifs", "https://upload.wikimedia.org/wikipedia/commons/5/5f/Bin_Li.jpg"],
         ["Tang", "Transition to elevated seating, Buddhist influences: symmetry and calmness, Influenced by silk road cultures and interactions, more luxurious and rich, vibrant greens and blues"],
         ["Ming", "Golden Age of Chinese Interior Design. Interiors emphasized proportion, symmetry, and clarity. Walls are often plain to highlight furniture pieces"],
-        ["Qing", "Highly Decorative and Ornate interiors, Interior became denser fuller and richer, Opulent grand and colorful interiors, manhu-han mix"]
+        ["Qing", "Highly Decorative and Ornate interiors, Interior became denser fuller and richer, Opulent grand and colorful interiors, manhu-han mix"],
         ["Song", "More structured. Development of furniture pieces by scholars, musicians, and artists. Rectangular tables and painting desks."],
         ["Yuan", "Invested on creative work. Largely influenced by the mongol empire. Interiors have larger spaces and furniture. Pieces were more robust and well rounded. Interiors were designed for mobility"]
       ],
