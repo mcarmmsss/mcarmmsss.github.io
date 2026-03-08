@@ -213,8 +213,8 @@ function showQuestion() {
   nextBtn.disabled = true;
 
   const card = shuffledDeck[index];
-  const prompt = card[0] || '';   // text prompt (can be empty)
-  const answer = card[1];
+  const prompt = card[0] || '';   // term (prompt)
+  const answer = card[1];         // description (answer)
   const image  = card[2] || '';   // image URL
 
   // Progress
@@ -226,7 +226,7 @@ function showQuestion() {
   progress.textContent = `Card ${index + 1} of ${shuffledDeck.length}`;
   questionEl.appendChild(progress);
 
-  // Container for image + prompt (used in ALL modes)
+  // Container for image + prompt
   const qContainer = document.createElement("div");
   qContainer.style.textAlign = "center";
   qContainer.style.marginBottom = "20px";
@@ -260,14 +260,14 @@ function showQuestion() {
 
   questionEl.appendChild(qContainer);
 
-  const allTerms = currentDeck.map(c => c[1]); // answers
-  const allDefs  = currentDeck.map(c => c[0]); // prompts
+  const allTerms = currentDeck.map(c => c[0]); // all terms (prompts)
+  const allDescriptions = currentDeck.map(c => c[1]); // all descriptions
 
   if (currentMode === 'multiple') {
     let qText = prompt || answer;
     let options = [answer];
-    while (options.length < 4 && allDefs.length > options.length) {
-      const rand = allDefs[Math.floor(Math.random() * allDefs.length)];
+    while (options.length < 4 && allDescriptions.length > options.length) {
+      const rand = allDescriptions[Math.floor(Math.random() * allDescriptions.length)];
       if (!options.includes(rand)) options.push(rand);
     }
     options = shuffleArray(options);
@@ -279,27 +279,31 @@ function showQuestion() {
     });
   }
   else if (currentMode === 'reversed') {
-    // FIXED: Question = description (answer), Correct = term (prompt)
-    let questionText = answer;
-    let correctTerm = prompt || answer; // term is correct answer
+    // FIXED: Question = description, Correct answer = term (prompt)
+    let questionText = answer; // description as question
+    let correctTerm = prompt || answer; // term is correct
 
-    let options = [correctTerm]; // start with correct term
+    let options = [correctTerm]; // include correct term
 
-    // Distractors from other terms (exclude current correct one)
-    let distractors = allTerms.filter(t => t !== correctTerm);
+    // Distractors: other terms (exclude current correct term)
+    let distractors = allTerms.filter(t => t && t !== correctTerm);
     while (options.length < 4 && distractors.length > 0) {
       const randIndex = Math.floor(Math.random() * distractors.length);
-      options.push(distractors[randIndex]);
-      distractors.splice(randIndex, 1); // remove used
+      const distractor = distractors[randIndex];
+      if (!options.includes(distractor)) {
+        options.push(distractor);
+      }
+      distractors.splice(randIndex, 1);
     }
 
-    // If still short, fallback to prompts
+    // If still short, add from descriptions (but exclude correct term)
     if (options.length < 4) {
-      let promptDistractors = allDefs.filter(p => p && p !== correctTerm && !options.includes(p));
-      while (options.length < 4 && promptDistractors.length > 0) {
-        const randIndex = Math.floor(Math.random() * promptDistractors.length);
-        options.push(promptDistractors[randIndex]);
-        promptDistractors.splice(randIndex, 1);
+      let descDistractors = allDescriptions.filter(d => d !== answer && !options.includes(d));
+      while (options.length < 4 && descDistractors.length > 0) {
+        const randIndex = Math.floor(Math.random() * descDistractors.length);
+        const distractor = descDistractors[randIndex];
+        options.push(distractor);
+        descDistractors.splice(randIndex, 1);
       }
     }
 
@@ -346,7 +350,7 @@ function checkAnswer(choice, correct, btn) {
 function checkTyped() {
   if (answered) return;
   const user = normalize(typedInput.value);
-  const correct = normalize(shuffledDeck[index][1]);
+  const correct = normalize(shuffledDeck[index][0]); // fixed: use term (card[0]) for ID mode
   answered = true;
   nextBtn.disabled = false;
   if (user === correct) {
@@ -358,7 +362,7 @@ function checkTyped() {
     feedbackEl.innerHTML = "Correct! 🌸💖";
     feedbackEl.style.color = "#4caf50";
   } else {
-    feedbackEl.innerHTML = `No... it's <strong>${shuffledDeck[index][1]}</strong>`;
+    feedbackEl.innerHTML = `No... it's <strong>${shuffledDeck[index][0]}</strong>`;
     feedbackEl.style.color = "#e74c3c";
   }
 }
