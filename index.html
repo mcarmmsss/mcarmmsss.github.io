@@ -52,7 +52,7 @@
 <body>
 <header>🌸 Mc's Workspace 🌸 💕</header>
 <div class="container">
-  <!-- FLASHCARDS -->
+  <!-- flashcards mismo -->
   <div class="card">
     <h2>📚 Flashcards 💖</h2>
     <select id="mainTopicSelect"></select>
@@ -73,7 +73,7 @@
     <p>Score: <span id="score">0</span> 🎀 <span id="savedScore"></span></p>
     <button id="nextBtn" onclick="nextQuestion()" disabled>Next ♡</button>
   </div>
-  <!-- SIDE PANEL -->
+  <!-- side panel to be updated -->
   <div class="card">
     <h2>📝 Notes 🎀</h2>
     <textarea placeholder="Sulat ka dito nak... 💭"></textarea>
@@ -104,7 +104,7 @@
   </div>
 </div>
 
-<!-- FLOATING STICKERS -->
+<!-- FLOATING STICKERS, changeable? -->
 <img src="images/hello-kitty.png" class="sticker" style="bottom:30px;right:40px;">
 <img src="images/my-melody.png" class="sticker" style="top:80px;left:50px;width:90px;animation-delay:1s;">
 <img src="images/cinnamoroll.png" class="sticker" style="bottom:120px;left:60px;width:70px;animation-delay:2s;">
@@ -339,7 +339,7 @@ function checkAnswer(choice, correct, btn) {
     btn.style.background = "#c3f0c8";
     btn.style.border = "3px solid #4caf50";
 
-    // Milestone celebration
+    // Milestone celebration mga speed gif lmao
     if (milestones.includes(score) && !playedMilestones.has(score)) {
       playedMilestones.add(score);
       showMilestoneGif(score);
