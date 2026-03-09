@@ -201,7 +201,7 @@ const flashcardData = {
       ],
       furnitures_ming: [
         ["Yokeback Armchair", "Official's Hat armchair", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOIO0SDybh3tmykF1i8IyVcK3wtr6wFuQnIg&s"],
-        ["Horeshoe-back Armchair", "Formal, curved, has crest-motifs, rattan/wood", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuwkbC6p3IudQIisDPKJjM1Rsd0ywYI2BTyw&s"],
+        ["Horseshoe-back Armchair", "Formal, curved, has crest-motifs, rattan/wood", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuwkbC6p3IudQIisDPKJjM1Rsd0ywYI2BTyw&s"],
         ["Lamp-hanger chair", "Similar to yoke but higher and armless, hang lamps at sides", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvOFWV0ACVv9o9H2woboyh39JwIBkdmttgsg&s"],
         ["Folding Horseshoe-back Armchair", "Metal, late ming, high status, mobile, formal form, foot stool and leather seat", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_68Z1DGBEwiIgsjR03eA4X3BqMF0HdmbKow&s"],
         ["Square corner cabinets", "For storing books, metal handle, side table, short", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr79V5OV-hRMSbygwz9tjyV77-sM6uqrDTew&s"],
