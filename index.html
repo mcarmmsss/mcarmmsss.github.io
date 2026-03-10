@@ -47,7 +47,7 @@
       font-weight: 600;
       text-shadow: 0 0 10px black;
     }
-    /* Bigger pink checkbox */
+    /* pink checkbox fordawin */
     #toggleImages {
       accent-color: #ff9fcf;
       background-color: #fff0f5;
@@ -91,7 +91,7 @@
       <option value="identification">Identification (Type the Term/Name)</option>
     </select>
 
-    <!-- Image toggle – closer text, 3× bigger, pink -->
+    <!-- image toggle -->
     <label style="display:flex; align-items:center; gap:4px; margin:12px 0; font-size:1.1rem; color:#ff7fbf; cursor:pointer;">
       <input type="checkbox" id="toggleImages" checked>
       Show images in questions ♡
@@ -154,7 +154,7 @@
 <script src="decks.js"></script>
 <script>
 // ──────────────────────────────────────────────
-// Flashcard logic with image toggle + skip image-only cards when images off
+// Flashcard logic with image toggle n skip image-only cards when images off
 // ──────────────────────────────────────────────
 
 function normalize(str) {
@@ -273,7 +273,7 @@ function loadDeck() {
 
 function showQuestion() {
   if (!shuffledDeck.length) {
-    questionEl.innerHTML = "No cards in this deck yet... add some in decks.js! 💕";
+    questionEl.innerHTML = "No cards in this deck yet... ask mc to add request desks in decks.js! 💕";
     choicesEl.innerHTML = "";
     typedArea.style.display = "none";
     nextBtn.disabled = true;
@@ -293,7 +293,7 @@ function showQuestion() {
   let description = card[1] || '';
   let image = card[2] || '';
 
-  // If images toggled OFF and card has NO description (image-only), skip it
+  // If images toggled OFF and card has NO description logic wtf wait test lung
   if (!showImages && !description.trim()) {
     index++;
     if (index >= shuffledDeck.length) {
@@ -525,7 +525,7 @@ function sparkle() {
   }
 }
 
-// Pomodoro functions (unchanged)
+// Pomodoro functions 
 let time = 1500;
 let interval = null;
 let isPaused = false;
