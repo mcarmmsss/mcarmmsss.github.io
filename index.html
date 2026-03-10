@@ -47,6 +47,33 @@
       font-weight: 600;
       text-shadow: 0 0 10px black;
     }
+    /* Bigger pink checkbox */
+    #toggleImages {
+      accent-color: #ff9fcf;
+      background-color: #fff0f5;
+      width: 3em;
+      height: 3em;
+      border: 3px solid #ff9fcf;
+      border-radius: 6px;
+      cursor: pointer;
+      appearance: none;
+      position: relative;
+      margin: 0;
+    }
+    #toggleImages:checked {
+      background-color: #ff9fcf;
+      border-color: #ff7fbf;
+    }
+    #toggleImages:checked::after {
+      content: "♡";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -64,8 +91,8 @@
       <option value="identification">Identification (Type the Term/Name)</option>
     </select>
 
-    <!-- Image toggle -->
-    <label style="display:flex; align-items:center; gap:8px; margin:12px 0; font-size:1.1rem; color:#ff7fbf; cursor:pointer;">
+    <!-- Image toggle – closer text, 3× bigger, pink -->
+    <label style="display:flex; align-items:center; gap:4px; margin:12px 0; font-size:1.1rem; color:#ff7fbf; cursor:pointer;">
       <input type="checkbox" id="toggleImages" checked>
       Show images in questions ♡
     </label>
@@ -266,12 +293,20 @@ function showQuestion() {
   let description = card[1] || '';
   let image = card[2] || '';
 
-  // If images are toggled OFF and the card has NO description/text (image-only), skip it
+  // If images toggled OFF and card has NO description (image-only), skip it
   if (!showImages && !description.trim()) {
     index++;
     if (index >= shuffledDeck.length) {
       index = 0;
       shuffledDeck = shuffleArray(currentDeck);
+      const msg = document.createElement("div");
+      msg.style.color = "#ff7fbf";
+      msg.style.fontWeight = "bold";
+      msg.style.margin = "12px 0";
+      msg.style.fontSize = "1.2rem";
+      msg.textContent = "✦ Skipped image-only cards ♡ New round started!";
+      questionEl.prepend(msg);
+      setTimeout(() => { if (msg.parentNode) msg.remove(); }, 5000);
     }
     showQuestion(); // recurse to next valid card
     return;
@@ -303,13 +338,12 @@ function showQuestion() {
   const txt = document.createElement("span");
   txt.style.fontSize = "1.4rem";
   txt.style.display = "block";
-  txt.style.marginTop = image && showImages ? "15px" : "0";
+  txt.style.marginTop = (image && showImages) ? "15px" : "0";
 
   const allTerms = currentDeck.map(c => c[0]).filter(t => t);
   const allDescriptions = currentDeck.map(c => c[1]).filter(d => d);
 
   if (currentMode === 'multiple') {
-    // Term → Description
     txt.textContent = term || "No term available";
     let options = [description];
     let distractors = allDescriptions.filter(d => d !== description);
@@ -327,7 +361,6 @@ function showQuestion() {
     });
   }
   else if (currentMode === 'reversed') {
-    // Description → Term
     txt.textContent = description || "No description available";
     let correctTerm = term || description;
     let options = [correctTerm];
@@ -376,7 +409,6 @@ function checkAnswer(choice, correct, btn) {
     btn.style.background = "#c3f0c8";
     btn.style.border = "3px solid #4caf50";
 
-    // Milestone celebration
     if (milestones.includes(score) && !playedMilestones.has(score)) {
       playedMilestones.add(score);
       showMilestoneGif(score);
@@ -408,7 +440,6 @@ function checkTyped() {
     feedbackEl.innerHTML = "Correct! 🌸💖";
     feedbackEl.style.color = "#4caf50";
 
-    // Milestone celebration
     if (milestones.includes(score) && !playedMilestones.has(score)) {
       playedMilestones.add(score);
       showMilestoneGif(score);
@@ -419,7 +450,6 @@ function checkTyped() {
   }
 }
 
-// Milestone GIF popup
 function showMilestoneGif(points) {
   const postIds = {
     50: "1082323842437565509",
@@ -458,7 +488,6 @@ function showMilestoneGif(points) {
 
   document.body.appendChild(modal);
 
-  // Auto-close after 7 seconds
   setTimeout(() => {
     if (modal.parentNode) modal.remove();
   }, 7000);
