@@ -28,7 +28,7 @@
     #typedAnswer { font-size:1.2rem; }
     #feedback { font-size:1.3rem; margin:15px 0; min-height:1.5em; }
     img.question-img { max-width:90%; max-height:400px; border-radius:16px; margin:15px auto; display:block; box-shadow:0 4px 15px rgba(0,0,0,0.15); }
-    /* brah */
+    /* Modal for GIF celebration */
     .milestone-modal {
       position: fixed;
       inset: 0;
@@ -52,7 +52,7 @@
 <body>
 <header>🌸 Mc's Workspace 🌸 💕</header>
 <div class="container">
-  <!-- flashcards mismo -->
+  <!-- FLASHCARDS -->
   <div class="card">
     <h2>📚 Flashcards 💖</h2>
     <select id="mainTopicSelect"></select>
@@ -63,6 +63,13 @@
       <option value="reversed">Reversed MC (Description → Term)</option>
       <option value="identification">Identification (Type the Term/Name)</option>
     </select>
+
+    <!-- Image toggle -->
+    <label style="display:flex; align-items:center; gap:8px; margin:12px 0; font-size:1.1rem; color:#ff7fbf; cursor:pointer;">
+      <input type="checkbox" id="toggleImages" checked>
+      Show images in questions ♡
+    </label>
+
     <div id="question" style="font-size:1.4rem; margin:20px 0; text-align:center;"></div>
     <div id="choices" class="choices"></div>
     <div id="typedArea" style="display:none;">
@@ -73,7 +80,7 @@
     <p>Score: <span id="score">0</span> 🎀 <span id="savedScore"></span></p>
     <button id="nextBtn" onclick="nextQuestion()" disabled>Next ♡</button>
   </div>
-  <!-- side panel to be updated -->
+  <!-- SIDE PANEL -->
   <div class="card">
     <h2>📝 Notes 🎀</h2>
     <textarea placeholder="Sulat ka dito nak... 💭"></textarea>
@@ -104,7 +111,7 @@
   </div>
 </div>
 
-<!-- FLOATING STICKERS, changeable? -->
+<!-- FLOATING STICKERS -->
 <img src="images/hello-kitty.png" class="sticker" style="bottom:30px;right:40px;">
 <img src="images/my-melody.png" class="sticker" style="top:80px;left:50px;width:90px;animation-delay:1s;">
 <img src="images/cinnamoroll.png" class="sticker" style="bottom:120px;left:60px;width:70px;animation-delay:2s;">
@@ -120,7 +127,7 @@
 <script src="decks.js"></script>
 <script>
 // ──────────────────────────────────────────────
-// Flashcard logic brah sana gumana na pls wtf
+// Flashcard logic with image toggle + skip image-only cards when images off
 // ──────────────────────────────────────────────
 
 function normalize(str) {
@@ -133,6 +140,19 @@ let index = 0;
 let score = 0;
 let answered = false;
 let currentMode = 'multiple';
+
+// Image toggle
+let showImages = localStorage.getItem('showImages') !== 'false'; // default true
+
+const toggleImagesCheckbox = document.getElementById("toggleImages");
+if (toggleImagesCheckbox) {
+  toggleImagesCheckbox.checked = showImages;
+  toggleImagesCheckbox.onchange = () => {
+    showImages = toggleImagesCheckbox.checked;
+    localStorage.setItem('showImages', showImages);
+    showQuestion(); // refresh current card
+  };
+}
 
 // Milestone GIFs
 const milestones = [50, 100, 200, 1000];
@@ -233,6 +253,7 @@ function showQuestion() {
     return;
   }
 
+  // Clear everything
   questionEl.innerHTML = '';
   choicesEl.innerHTML = "";
   typedArea.style.display = "none";
@@ -240,11 +261,23 @@ function showQuestion() {
   answered = false;
   nextBtn.disabled = true;
 
-  const card = shuffledDeck[index];
-  const term = card[0] || '';
-  const description = card[1] || '';
-  const image = card[2] || '';
+  let card = shuffledDeck[index];
+  let term = card[0] || '';
+  let description = card[1] || '';
+  let image = card[2] || '';
 
+  // If images are toggled OFF and the card has NO description/text (image-only), skip it
+  if (!showImages && !description.trim()) {
+    index++;
+    if (index >= shuffledDeck.length) {
+      index = 0;
+      shuffledDeck = shuffleArray(currentDeck);
+    }
+    showQuestion(); // recurse to next valid card
+    return;
+  }
+
+  // Progress
   const progress = document.createElement("div");
   progress.style.fontSize = "1rem";
   progress.style.color = "#ff9fcf";
@@ -253,11 +286,13 @@ function showQuestion() {
   progress.textContent = `Card ${index + 1} of ${shuffledDeck.length}`;
   questionEl.appendChild(progress);
 
+  // Container for image + text
   const qContainer = document.createElement("div");
   qContainer.style.textAlign = "center";
   qContainer.style.marginBottom = "20px";
 
-  if (image) {
+  // Only show image if toggle is ON
+  if (image && showImages) {
     const img = document.createElement("img");
     img.src = image;
     img.className = "question-img";
@@ -268,12 +303,13 @@ function showQuestion() {
   const txt = document.createElement("span");
   txt.style.fontSize = "1.4rem";
   txt.style.display = "block";
-  txt.style.marginTop = image ? "15px" : "0";
+  txt.style.marginTop = image && showImages ? "15px" : "0";
 
   const allTerms = currentDeck.map(c => c[0]).filter(t => t);
   const allDescriptions = currentDeck.map(c => c[1]).filter(d => d);
 
   if (currentMode === 'multiple') {
+    // Term → Description
     txt.textContent = term || "No term available";
     let options = [description];
     let distractors = allDescriptions.filter(d => d !== description);
@@ -291,6 +327,7 @@ function showQuestion() {
     });
   }
   else if (currentMode === 'reversed') {
+    // Description → Term
     txt.textContent = description || "No description available";
     let correctTerm = term || description;
     let options = [correctTerm];
@@ -339,7 +376,7 @@ function checkAnswer(choice, correct, btn) {
     btn.style.background = "#c3f0c8";
     btn.style.border = "3px solid #4caf50";
 
-    // Milestone celebration mga speed gif lmao
+    // Milestone celebration
     if (milestones.includes(score) && !playedMilestones.has(score)) {
       playedMilestones.add(score);
       showMilestoneGif(score);
@@ -459,7 +496,7 @@ function sparkle() {
   }
 }
 
-// Pomodoro functions 
+// Pomodoro functions (unchanged)
 let time = 1500;
 let interval = null;
 let isPaused = false;
