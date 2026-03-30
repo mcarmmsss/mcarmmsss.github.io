@@ -405,7 +405,72 @@ const flashcardData = {
     "Rococo Period": {
       general: [
         ["Rocaille", "Meaning Shellwork and Rockwork on grottoes and fountains"],
-        ["Age of Enlightenment", "Age of Reasoning"]
+        ["Age of Enlightenment", "Age of Reasoning"],
+        ["French, English, American Georgian", "3 Period Styles"],
+        ["Juste-Aurèle Meissonnier", "An Italian who came to Paris in 1723 credited with being largely responsible for developing the rococo style. He produced a book of engraved designs using the shell as a decorative motif."],
+        ["Inigo Jones", "Introduced Palladian architecture into england. Upon his return from a trip to Italy he created a palladian style in london based upon the knowledge he had acquired from his study of Palladio writings and from his own first hand examination of ancient and renaissasnce architecture."],
+        ["Fete Galante", "18th Century French Style of painting that depics the aristocracy walking through a forested landscape"],
+        ["Porceilain", "Main Material"],
+        ["Japanning", "describes the European imitation of Asian Lacquer work originally used on furniture"]
+      ],
+      General_People: [
+        ["Philippe II", "Duke of Orleans known for having a more relaxed and less rigid court culture compared to the strict rule of Louis XIV. Encouraged intellectrual discussion, art, and cultural activities during his regency"],
+        ["King Louis XV", "Known as Louis the beloved because he was initially popular with the public"],
+        ["Madame de Pompadous", "Born Jeanne-Antoinetter Poisson and later became the official mistress of Louis XV. Patron of the arts and encouraged the use of light patel colors, mirrors, gilded moldings, and floral motifs"]
+      ],
+      Types_of_Architecture: [
+        ["Hotels Particuliers", "Urban Townhouses, luxury private mansions built for aristocrats in Paris. Known for elegant interiors, curved walls, decorative panels, mirrors, and ornate plasterwork"],
+        ["Pleasure Pavilions", "Small Luxurious buildings used for leisure, entertainment, and private gatherings. Often located in palace gardens and designed with light, playful Rococo decoration"],
+        ["Royal Palace Interiors", "Rococo was most visible in interior design rather than exterior structure. Rooms were designed with asymmetrical ornament, pastel colors, gilded carvings, and decorative ceiling paintings. Many Rococo interiors appeared in the Palace of Versailles during the reign of Louis XV. Salons. Elegant reception rooms in aristocratic houses used for social gatherings, intellectrual discussions and entertainment."],
+        ["Rococo Churches", "Some churches adopted rococo style with light-filled interiors, curved ornament, elaborate stucco work, and ceiling frescoes. These interiors created a dramatic yet graceful spiritual atmosphere."]
+      ],
+      Architectural_Materials: [
+        ["Wood", "For curved panels, furniture, boiserie (decorative wall paneling), and moldings."],
+        ["Stucco and Plaster", "For ornate ceiling decorations, wall reliefs, and decorative motifs"],
+        ["Gilding", "Gold Leaf"],
+        ["Mirrors", "Large mirrors were used to reflect light and enlarge spaces"],
+        ["Marble", "Often Used for flooring, fireplace surrounds, and sculptureal details"],
+        ["Paints and Pastels", "Soft, light colors which were typical of Rococo Interiors."],
+        ["Porcelain", "Especially fine French porcelain from places like Sevres, used for decorative objects, vases, and ornaments"]
+      ],
+      Elements: [
+        ["Curves and Asymmetry", "Sweeping curves in walls, furnitures, moldings, and staircases; asymmetrical designs were preferred over rigid symmetry."],
+        ["Shells" , "Coquilles, stylized shells"],
+        ["Floral and Foliage Patterns", "Garlands, bouquets, leaves, and vines used for wall panels, cornices, and furniture"],
+        ["Scrolls and Arabesques", "Inticrate, flowing, and scrolling patterns in plasterwork, and architectural details"],
+        ["Serpentine Lines", "C and S shapred curves"],
+        ["Rocaille", "Rock and shell forms"],
+        ["Putto", "Cherubs"],
+        ["Pastoral", "Scenes of leisure, lova and nature painted on ceiling and wall panels"]
+      ],
+      French_Rococo_Architecture: [
+        ["Petit Trianon", "Designed by Ange-Jacques Gabriel by the order of Louis XV. For Madame de Pompadour died 4 years before completion. Occupied by Pomadour’s successor Madame du Barry Later, under King XVI the chateau and park given to Marie Antoinete, 19 yr old for her enjoyment. Transition from the Rococo style of the earlier part of the 18th century, to the more sober and refined, Neoclassical style of the 1760s and onward. The exterior of the château is simple and elegant, architecturally correct, and highly original used as a private refuge from the formality of the courts", "https://media.architecturaldigest.com/photos/55e76de1cd709ad62e8ed301/4:3/w_544,h_408,c_limit/dam-images-daily-2012-06-petit-trianon-petit-trianon-palace.jpg"],
+        ["Juste-Aurele Meissonnier", "Created designs for Louis XV's private apartments"],
+        ["Petits Apartments", "Private Apartments. Louis XV redecorated his private spaces into smaller, more intimate, and luxurious, yet comfortable, rooms"],
+        ["Hotel de Soubise", "Seized during the French revolution adapted to house the French National Archives", "https://c8.alamy.com/comp/D2D3CN/france-paris-3rd-arrondissement-hotel-de-soubise-national-archives-D2D3CN.jpg"],
+        ["Petit Chateau de Chantilly", "Designed by Jean Auberte considered one of the earliest, most refined examples of the style. Patron: Louis Henri Duke of Bourbon", "https://destination.parc-oise-paysdefrance.fr/en/wp-content/uploads/sites/2/2020/04/banner.jpg"],
+        ["Hotel de Rohan", "a historic 18th-century hôtel particulier in Paris, built between 1705-1708 by architect Pierre-Alexis Delamair for the de Rohan family in the Marais district", "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQs12fH6CVi2rJXI7LAqI5Hnmhcmr-QUEpZcfRU_Ery6jtn1nv9"],
+        ["Hotel Amelot de Gournay", "luxurious private townhouse designed for wealthy aristocrats living in Paris during the reign of Louis XV", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSkNnJQBMdNgZljFhPbLtJg_RERn8uvf9kSw&s"],
+        ["Ange-Jacques Gabriel", "Petit Trianon architect"],
+        ["Germain Boffrand","One of the most influential Rococo architects in France during the early  18th century. Known for Hotel de Soubise and Hotel Amelot de Gournay"],
+        ["Pierre-Alexis Delamair", "Designed the overall structure, facade, and courtyards, which later served as the fondation for the Rococo interiors created by Germain Boffrand"],
+        ["Jean Aubert", "Designed the Petit Chateay de Chantilly in 1722 for Louis Henri, Duke of Bourbon"]
+      ],
+      English_Rococo_Architecture: [
+        ["Thomas Chippendale", "His published work, the gentleman and the cabinet-maker's director presented furniture designs that incorporated Rococo, Gothic, and Chinese influences"],
+        ["Thomas Johnson", "Produced imaginative Rococo furniture and ornament designs, with elaborate scrolls and asymmetry."],
+        ["Hubert-Francois Gravelot", "Helped introduce French Rococo Ornament to England through engravings and teachings"],
+        ["Paul de Lamerie", "Contributed to Rococo decorative arts through silverwork"],
+        ["William Kent", "Developed the Kentian Style Furniture, a more architectural and classical style of furniture but still in line with rococo"],
+        ["Robert Adam", "In the late Georgian period, he moved English interior design to Neoclassicism, whilst retaining Rococo in his earlier interiors"],
+        ["Rectangular", "Rooms were ________ and adheres to a symmetrical layout"],
+        ["Trafalgar Park", "Situated in Wiltshare and was originally modelled after a Palladian villa."]
+      ],
+      American_Georgian_Architecture: [ 
+        ["Peter Harrison", "English Architect specializing in Georgian Architecture, specifically Neo-Palladian. Some of his works are King's Chapel at Boston, Redwood library, Saint Paul's Chapel"],
+        ["Redwood Library", "designed by Peter Harrison in 1748. One of the earliest examples of Palladian architecture in American Colonies""],
+        ["Painted Finishes", "____ instead of gilding"],
+        ["Stone and Stucco", "_____ were used on the south"]
       ]
     }
   }
