@@ -402,7 +402,7 @@ const flashcardData = {
         ["Monumental Staircases", "Interior Feature of English"]
       ]
     },
-    "Baroque Period": {
+    "Rococo Period": {
       general: [
         ["Rocaille", "Meaning Shellwork and Rockwork on grottoes and fountains"],
         ["Age of Enlightenment", "Age of Reasoning"]
