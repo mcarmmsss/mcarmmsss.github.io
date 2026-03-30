@@ -411,12 +411,18 @@ const flashcardData = {
         ["Inigo Jones", "Introduced Palladian architecture into england. Upon his return from a trip to Italy he created a palladian style in london based upon the knowledge he had acquired from his study of Palladio writings and from his own first hand examination of ancient and renaissasnce architecture."],
         ["Fete Galante", "18th Century French Style of painting that depics the aristocracy walking through a forested landscape"],
         ["Porceilain", "Main Material"],
+        ["Romanticism", "embraced individuality and subjectivity to counteract the excessive insistence on logical thought. Artists began exploring various emotional and psychological states as well as moods."],
+        ["Exoticism", "The term _______ as a substantive was first coined in the 19th century, and was used, not to refer to objects, but to the sense of nostalgia which they produced in the mind of the beholder. Moreover, the link with the Orient was tenuous one, for the stimulation of the senses which led to the feeling of exoticism was above all prompted by the discovery of the New World in the Western Hemisphere"],
         ["Japanning", "describes the European imitation of Asian Lacquer work originally used on furniture"]
       ],
       General_People: [
         ["Philippe II", "Duke of Orleans known for having a more relaxed and less rigid court culture compared to the strict rule of Louis XIV. Encouraged intellectrual discussion, art, and cultural activities during his regency"],
         ["King Louis XV", "Known as Louis the beloved because he was initially popular with the public"],
-        ["Madame de Pompadous", "Born Jeanne-Antoinetter Poisson and later became the official mistress of Louis XV. Patron of the arts and encouraged the use of light patel colors, mirrors, gilded moldings, and floral motifs"]
+        ["Madame de Pompadour", "Born Jeanne-Antoinetter Poisson and later became the official mistress of Louis XV. Patron of the arts and encouraged the use of light patel colors, mirrors, gilded moldings, and floral motifs"],
+        ["Maria Theresa of Austria", "the most important ruler of the age of Enlightened Absolutism and one of the most famous Habsburgs. She took over the reins of government on the death of her father Charles VI and implemented numerous enduring reforms."],
+        ["Catherine the Great of Austria", "reigned over Russia for 34 years—longer than any other female in Russian history. As empress, she westernized Russia. She led her country into full participation in the political and cultural life of Europe. She championed the arts and reorganized the Russian law code."],
+        ["John Locke", "Among the most influential political philosophers of the modern period. In the Two Treatises of Government, he defended the claim that men are by nature free and equal against claims that God had made all people naturally subject to a monarch."],
+        ["Voltaire", " is the pen name under which French authorphilosopher François-Marie Arouet published a number of books and pamphlets in the 18th century. He was a key figure in the European intellectual movement known as the Enlightenment"]
       ],
       Types_of_Architecture: [
         ["Hotels Particuliers", "Urban Townhouses, luxury private mansions built for aristocrats in Paris. Known for elegant interiors, curved walls, decorative panels, mirrors, and ornate plasterwork"],
@@ -464,13 +470,20 @@ const flashcardData = {
         ["William Kent", "Developed the Kentian Style Furniture, a more architectural and classical style of furniture but still in line with rococo"],
         ["Robert Adam", "In the late Georgian period, he moved English interior design to Neoclassicism, whilst retaining Rococo in his earlier interiors"],
         ["Rectangular", "Rooms were ________ and adheres to a symmetrical layout"],
-        ["Trafalgar Park", "Situated in Wiltshare and was originally modelled after a Palladian villa."]
+        ["Trafalgar Park", "Situated in Wiltshire and was originally modelled after a Palladian villa."]
       ],
       American_Georgian_Architecture: [ 
         ["Peter Harrison", "English Architect specializing in Georgian Architecture, specifically Neo-Palladian. Some of his works are King's Chapel at Boston, Redwood library, Saint Paul's Chapel"],
-        ["Redwood Library", "designed by Peter Harrison in 1748. One of the earliest examples of Palladian architecture in American Colonies""],
+        ["Redwood Library", "designed by Peter Harrison in 1748. One of the earliest examples of Palladian architecture in American Colonies"],
         ["Painted Finishes", "____ instead of gilding"],
         ["Stone and Stucco", "_____ were used on the south"]
+      ],
+      Art: [
+        ["Pastel", "P in PASTELS"],
+        ["Asymmetry", "A in PASTELS"],
+        ["Sensual", "S in PASTELS"],
+        ["Thematically Playful", "T in PASTELS"],
+        ["Elites", "E in PASTELS"]
       ]
     }
   }
