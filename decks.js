@@ -401,6 +401,12 @@ const flashcardData = {
         ["Grand mirrored galleries", "Interior Feature of French"],
         ["Monumental Staircases", "Interior Feature of English"]
       ]
+    },
+    "Baroque Period": {
+      general: [
+        ["Rocaille", "Meaning Shellwork and Rockwork on grottoes and fountains"],
+        ["Age of Enlightenment", "Age of Reasoning"]
+      ]
     }
   }
 };
