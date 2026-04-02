@@ -485,8 +485,8 @@ const flashcardData = {
         ["Thematically Playful", "T in PASTELS"],
         ["Elites", "E in PASTELS"],
         ["Lavish Ornamentation", "L in PASTELS"],
-        ["Secular", "S in PASTELS"]
-        ["Jean-Antoine Watteau", "the innovative artist whoextended Rococo beyond architecture, interior design and sculpture to the canvas. The notable elements that make his style unique are the combination of his lofty content and brightly colored landscapes."]
+        ["Secular", "S in PASTELS"],
+        ["Jean-Antoine Watteau", "the innovative artist whoextended Rococo beyond architecture, interior design and sculpture to the canvas. The notable elements that make his style unique are the combination of his lofty content and brightly colored landscapes."],
         ["Francois Boucher", "Leading French Painter, engraver, and designer who dominated the Rocco style through his works featuring pastel colors, sensual mythological scenes, pastroal landscapes, and playful eroticism. Made portraits of Madame de Pompadour and the Triumph of Venus; possibly based from his wife"],
         ["Rose Pompadour Pink", "A color developed by the sevres manufactory"],
         ["Jean-Honore Fragonard", "Painter and Printmaker. Fluid brushwork, hedonictic scenes of love flirtation, eroticism, and playful leisure. Made the Swing"],
@@ -517,7 +517,7 @@ const flashcardData = {
         ["American-Georgian Rococo Interiors", "Combination of styles and different influences. Practicality and comfort. More classical, proportional, and symmetrical"],
         ["Fauteuils", "Can either be flas- a la reine or concave-en cabriolet", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5hztnmf8gNxO3UwFPjgU7n4T2Z82dUzc19g&s"],
         ["Bergeres", "Wide Seat with a loose cushion", "https://collectionapi.metmuseum.org/api/collection/v1/iiif/205414/466299/main-image"],
-        ["Cabriole Leg", "Resembled an animal leg with a knee, ankle, and foot, often with ornamentation at the knee such as a carved shell motif", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3ojE-QqSRKV-W8X45MJtnxiQAudCasutE1Q&s"]
+        ["Cabriole Leg", "Resembled an animal leg with a knee, ankle, and foot, often with ornamentation at the knee such as a carved shell motif", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3ojE-QqSRKV-W8X45MJtnxiQAudCasutE1Q&s"],
         ["Chaise Lounge", "meaning long chair in French,  an upholstered seating unit styled like a chair, elongated to support the legs", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTirLi4XxB1tehFBoVOJ4ko8A9NX06C9nMZdQ&s"],
         ["Duchesse Brisee", "splits into two or three pieces—usually an armchair (bergère) and one or two ottomans", "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjPtwpQ2TsUD3fR1H7xl1iaPYGk43ujJHXtQg4nfAjTwY3an4Jx3gohuJ7flAvZ7JVSdH6F0J5H0be0ffOM65h6GpG7ZVHbbuIrTvSUhJmkWgvUm_v8rU0qDp5PGdrXxUZUnnhkIxybySNG/s1600/d4941904x.jpg"],
         ["Ambulantes", "Comes in many sizes and shapes as it may have different functions.  a lightweight, mobile side table", "https://a.1stdibscdn.com/french-19th-century-rococo-ambulante-side-table-with-drawer-and-mirrored-top-for-sale-picture-2/f_9000/f_452875221748898465370/3949g_master.jpg?width=768"],
