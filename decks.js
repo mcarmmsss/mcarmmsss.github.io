@@ -226,7 +226,7 @@ const flashcardData = {
         ["Guan Ware", "Subtle gray often crackled gold. literally translates to official ware and is a renowned type of Chinese imperial ceramic made for the Song Dynasty court.", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeZqyKCiLE0OKzvRhJIqdsIxivibtSE6TzyQ&s"],
         ["Ge Ware", "Gray-Green w/warm tones, or ice crackle", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKalEf-2r_MIiqWk2EwvK2Mzgi5EQCpjFbuw&s"],
         ["Jun ware", "Thich purple-to-blue glaze with fluxing, looks like bruises", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUhbRh6CQFWD3VxWTUuoPVtmlZNOrGUGc-qw&s"],
-        ["Ding Ware", "White Porceilain w/ incision or molding"]
+        ["Ding Ware", "White Porcelain w/ incision or molding"]
       ],
       motifs: [
         ["Leiwen", "Cloud and thunder patterns", "https://cdn.shopify.com/s/files/1/0714/3686/1732/files/Cloud_and_Thunder_Patterns_480x480.jpg?v=1716866569"],
@@ -410,7 +410,7 @@ const flashcardData = {
         ["Juste-Aurèle Meissonnier", "An Italian who came to Paris in 1723 credited with being largely responsible for developing the rococo style. He produced a book of engraved designs using the shell as a decorative motif."],
         ["Inigo Jones", "Introduced Palladian architecture into england. Upon his return from a trip to Italy he created a palladian style in london based upon the knowledge he had acquired from his study of Palladio writings and from his own first hand examination of ancient and renaissasnce architecture."],
         ["Fete Galante", "18th Century French Style of painting that depics the aristocracy walking through a forested landscape"],
-        ["Porceilain", "Main Material"],
+        ["Porcelain", "Main Material"],
         ["Romanticism", "embraced individuality and subjectivity to counteract the excessive insistence on logical thought. Artists began exploring various emotional and psychological states as well as moods."],
         ["Exoticism", "The term _______ as a substantive was first coined in the 19th century, and was used, not to refer to objects, but to the sense of nostalgia which they produced in the mind of the beholder. Moreover, the link with the Orient was tenuous one, for the stimulation of the senses which led to the feeling of exoticism was above all prompted by the discovery of the New World in the Western Hemisphere"],
         ["Japanning", "describes the European imitation of Asian Lacquer work originally used on furniture"]
