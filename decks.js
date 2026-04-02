@@ -544,8 +544,8 @@ const flashcardData = {
         ["Secretary Desks", "With drop lids, combine storage and writing space, glass doors above, displau pilasters or broken scroll pediments, or painted with Chinese landscapes", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7SfFa0G-zWk2dJRn0HEz139h6rThFjJbjSA&s"],
         ["Lowboys", "Chest of drawer, short and paired with high boys, curved fronts and shell carvings and less elaborate"],
         ["Settees/Sofas", "Curved/Curvilinear backs designed for conversation. Six cabriole or straight legs. Lightly tufted backs and seats and less dramatic."],
-        ["Poster Beds", "American With fabric hangings for warmth and privacy. Simple but funcctional"]
-        ["Boiserie", "Decorative wooden wall panels, alternating wide and narrow panels, elegant carvings of shells leaves and scrolls, painted white, gold, or pastel colors", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJhurxTeBZfn0Zog7_2fRM8_2OANgEd3r6VA&s"],
+        ["Poster Beds", "American With fabric hangings for warmth and privacy. Simple but funcctional"],
+        ["Boiserie", "Decorative wooden wall panels, alternating wide and narrow panels, elegant carvings of shells leaves and scrolls, painted white, gold, or pastel colors", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJhurxTeBZfn0Zog7_2fRM8_2OANgEd3r6VA&s"]
       ]
     }
   }
