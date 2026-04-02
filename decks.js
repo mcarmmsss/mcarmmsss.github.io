@@ -420,7 +420,7 @@ const flashcardData = {
         ["King Louis XV", "Known as Louis the beloved because he was initially popular with the public"],
         ["Madame de Pompadour", "Born Jeanne-Antoinetter Poisson and later became the official mistress of Louis XV. Patron of the arts and encouraged the use of light patel colors, mirrors, gilded moldings, and floral motifs"],
         ["Maria Theresa of Austria", "the most important ruler of the age of Enlightened Absolutism and one of the most famous Habsburgs. She took over the reins of government on the death of her father Charles VI and implemented numerous enduring reforms."],
-        ["Catherine the Great of Austria", "reigned over Russia for 34 years—longer than any other female in Russian history. As empress, she westernized Russia. She led her country into full participation in the political and cultural life of Europe. She championed the arts and reorganized the Russian law code."],
+        ["Catherine the Great", "reigned over Russia for 34 years—longer than any other female in Russian history. As empress, she westernized Russia. She led her country into full participation in the political and cultural life of Europe. She championed the arts and reorganized the Russian law code."],
         ["John Locke", "Among the most influential political philosophers of the modern period. In the Two Treatises of Government, he defended the claim that men are by nature free and equal against claims that God had made all people naturally subject to a monarch."],
         ["Voltaire", " is the pen name under which French authorphilosopher François-Marie Arouet published a number of books and pamphlets in the 18th century. He was a key figure in the European intellectual movement known as the Enlightenment"]
       ],
