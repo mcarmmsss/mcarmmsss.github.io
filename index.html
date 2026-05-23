@@ -615,5 +615,114 @@ modeSelect.onchange = () => { currentMode = modeSelect.value; showQuestion(); };
 // Init
 populateMainTopics();
 </script>
+<!-- Converter Button -->
+<button onclick="openConverter()" 
+        style="position:fixed; top:15px; right:15px; background:#ff9fcf; color:white; border:none; padding:10px 16px; border-radius:999px; font-weight:600; box-shadow:0 4px 15px rgba(0,0,0,0.1); z-index:1000;">
+    ✨ Converter Tool
+</button>
+
+<!-- Converter Modal -->
+<div id="converterModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; align-items:center; justify-content:center;">
+  <div class="card" style="width:90%; max-width:700px; max-height:90vh; overflow:auto;">
+    <h2>🌸 Text to Flashcard Converter 🌸</h2>
+    <p style="font-size:0.95rem; color:#666;">Paste what your classmates sent you:</p>
+    
+    <textarea id="inputText" rows="12" style="width:100%; font-family:monospace; font-size:0.95rem;" 
+      placeholder="Thailand&#10;Traditional thai home&#10;baan ruen thai, traditional thai home&#10;ruen mai bua, ..."></textarea>
+    
+    <button onclick="convertText()" style="margin:10px 0;">Convert to Code ♡</button>
+    <button onclick="closeConverter()" style="background:#ccc; margin-left:8px;">Close</button>
+    
+    <div id="outputArea" style="margin-top:15px; display:none;">
+      <p><strong>✅ Converted Code:</strong></p>
+      <textarea id="outputCode" rows="15" style="width:100%; font-family:monospace; background:#fff5f9;" readonly></textarea>
+      <button onclick="copyToClipboard()">Copy to Clipboard 📋</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// translator pra sa mga tumutulogn
+function openConverter() {
+  document.getElementById("converterModal").style.display = "flex";
+  document.getElementById("outputArea").style.display = "none";
+}
+
+function closeConverter() {
+  document.getElementById("converterModal").style.display = "none";
+}
+
+function convertText() {
+  const input = document.getElementById("inputText").value.trim();
+  if (!input) return alert("Please paste some text!");
+
+  const lines = input.split('\n').map(l => l.trim()).filter(l => l);
+  let currentCountry = "";
+  let currentTopic = "";
+  let result = {};
+
+  for (let line of lines) {
+    // New Country
+    if (!currentCountry) {
+      currentCountry = line;
+      result[currentCountry] = {};
+      continue;
+    }
+
+    // New Topic
+    if (!line.includes(',')) {
+      currentTopic = line;
+      if (!result[currentCountry][currentTopic]) {
+        result[currentCountry][currentTopic] = [];
+      }
+      continue;
+    }
+
+    // Term, Definition, Image
+    const parts = line.split(',').map(p => p.trim());
+    const term = parts[0];
+    let definition = "";
+    let image = "";
+
+    if (parts.length >= 2) {
+      // Last part might be image URL if it starts with http
+      const last = parts[parts.length - 1];
+      if (last.startsWith("http")) {
+        image = last;
+        definition = parts.slice(1, -1).join(", ");
+      } else {
+        definition = parts.slice(1).join(", ");
+      }
+    }
+
+    if (term && currentTopic) {
+      const card = [term, definition];
+      if (image) card.push(image);
+      result[currentCountry][currentTopic].push(card);
+    }
+  }
+
+  // Generate nice JS output
+  let jsOutput = `  "${currentCountry}": {\n`;
+  Object.keys(result[currentCountry]).forEach(topic => {
+    jsOutput += `    "${topic}": [\n`;
+    result[currentCountry][topic].forEach(card => {
+      jsOutput += `      ${JSON.stringify(card)},\n`;
+    });
+    jsOutput += `    ],\n`;
+  });
+  jsOutput += `  },`;
+
+  document.getElementById("outputCode").value = jsOutput;
+  document.getElementById("outputArea").style.display = "block";
+}
+
+function copyToClipboard() {
+  const output = document.getElementById("outputCode");
+  output.select();
+  document.execCommand("copy");
+  alert("✅ Copied to clipboard! Paste it inside flashcardData in decks.js");
+}
+</script>
 </body>
 </html>
