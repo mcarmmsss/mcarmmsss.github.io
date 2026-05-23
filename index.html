@@ -615,37 +615,38 @@ modeSelect.onchange = () => { currentMode = modeSelect.value; showQuestion(); };
 // Init
 populateMainTopics();
 </script>
-<!-- Converter Button -->
+<!-- Converter Button (Top Right) -->
 <button onclick="openConverter()" 
-        style="position:fixed; top:15px; right:15px; background:#ff9fcf; color:white; border:none; padding:10px 16px; border-radius:999px; font-weight:600; box-shadow:0 4px 15px rgba(0,0,0,0.1); z-index:1000;">
+        style="position:fixed; top:15px; right:15px; background:#ff9fcf; color:white; border:none; padding:10px 18px; border-radius:999px; font-weight:600; box-shadow:0 4px 15px rgba(0,0,0,0.15); z-index:1000; font-size:1rem;">
     ✨ Converter Tool
 </button>
 
 <!-- Converter Modal -->
-<div id="converterModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:9999; align-items:center; justify-content:center;">
-  <div class="card" style="width:90%; max-width:700px; max-height:90vh; overflow:auto;">
+<div id="converterModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:9999; align-items:center; justify-content:center;">
+  <div class="card" style="width:92%; max-width:720px; max-height:92vh; overflow:auto; padding:20px;">
     <h2>🌸 Text to Flashcard Converter 🌸</h2>
-    <p style="font-size:0.95rem; color:#666;">Paste raw text:</p>
+    <p>Paste your classmates' text here:</p>
     
-    <textarea id="inputText" rows="12" style="width:100%; font-family:monospace; font-size:0.95rem;" 
-      placeholder="Thailand&#10;Traditional thai home&#10;baan ruen thai, traditional thai home&#10;ruen mai bua, ..."></textarea>
+    <textarea id="inputText" rows="14" style="width:100%; font-family:monospace; font-size:0.95rem; line-height:1.4;" 
+      placeholder="Thailand&#10;Traditional thai home&#10;baan ruen thai, traditional thai home&#10;ruen mai bua, northern thai home..., https://..."></textarea>
     
-    <button onclick="convertText()" style="margin:10px 0;">Convert to Code ♡</button>
-    <button onclick="closeConverter()" style="background:#ccc; margin-left:8px;">Close</button>
-    
-    <div id="outputArea" style="margin-top:15px; display:none;">
-      <p><strong>✅ Converted Code:</strong></p>
-      <textarea id="outputCode" rows="15" style="width:100%; font-family:monospace; background:#fff5f9;" readonly></textarea>
-      <button onclick="copyToClipboard()">Copy to Clipboard 📋</button>
+    <div style="margin:12px 0;">
+      <button onclick="convertText()" style="padding:12px 20px;">Convert to Code ♡</button>
+      <button onclick="closeConverter()" style="background:#ccc; margin-left:10px; padding:12px 20px;">Close</button>
+    </div>
+
+    <div id="outputArea" style="display:none; margin-top:15px;">
+      <p><strong>✅ Ready to copy:</strong></p>
+      <textarea id="outputCode" rows="16" style="width:100%; font-family:monospace; background:#fff5f9; font-size:0.9rem;" readonly></textarea>
+      <button onclick="copyToClipboard()" style="margin-top:8px;">📋 Copy Code</button>
     </div>
   </div>
 </div>
 
 <script>
-// translator pra sa mga tumutulogn
+// Improved Converter
 function openConverter() {
   document.getElementById("converterModal").style.display = "flex";
-  document.getElementById("outputArea").style.display = "none";
 }
 
 function closeConverter() {
@@ -654,74 +655,63 @@ function closeConverter() {
 
 function convertText() {
   const input = document.getElementById("inputText").value.trim();
-  if (!input) return alert("Please paste some text!");
+  if (!input) return alert("Paste some text first!");
 
   const lines = input.split('\n').map(l => l.trim()).filter(l => l);
   let currentCountry = "";
   let currentTopic = "";
-  let result = {};
+  let output = "";
 
   for (let line of lines) {
-    // New Country
     if (!currentCountry) {
       currentCountry = line;
-      result[currentCountry] = {};
+      output += `  "${currentCountry}": {\n`;
       continue;
     }
 
-    // New Topic
+    // New topic (no comma in line)
     if (!line.includes(',')) {
+      if (currentTopic) output += "    ],\n";
       currentTopic = line;
-      if (!result[currentCountry][currentTopic]) {
-        result[currentCountry][currentTopic] = [];
-      }
+      output += `    "${currentTopic}": [\n`;
       continue;
     }
 
-    // Term, Definition, Image
-    const parts = line.split(',').map(p => p.trim());
+    // Term, Definition, (Image)
+    const parts = line.split(',').map(p => p.trim()).filter(p => p);
+    if (parts.length === 0) continue;
+
     const term = parts[0];
     let definition = "";
     let image = "";
 
-    if (parts.length >= 2) {
-      // Last part might be image URL if it starts with http
-      const last = parts[parts.length - 1];
-      if (last.startsWith("http")) {
-        image = last;
-        definition = parts.slice(1, -1).join(", ");
-      } else {
-        definition = parts.slice(1).join(", ");
-      }
+    // Check if last part is image URL
+    const lastPart = parts[parts.length - 1];
+    if (lastPart.startsWith("http")) {
+      image = lastPart;
+      definition = parts.slice(1, -1).join(", ");
+    } else {
+      definition = parts.slice(1).join(", ");
     }
 
-    if (term && currentTopic) {
-      const card = [term, definition];
-      if (image) card.push(image);
-      result[currentCountry][currentTopic].push(card);
-    }
+    const card = [term, definition];
+    if (image) card.push(image);
+
+    output += `      ${JSON.stringify(card)},\n`;
   }
 
-  // Generate nice JS output
-  let jsOutput = `  "${currentCountry}": {\n`;
-  Object.keys(result[currentCountry]).forEach(topic => {
-    jsOutput += `    "${topic}": [\n`;
-    result[currentCountry][topic].forEach(card => {
-      jsOutput += `      ${JSON.stringify(card)},\n`;
-    });
-    jsOutput += `    ],\n`;
-  });
-  jsOutput += `  },`;
+  if (currentTopic) output += "    ]\n";
+  output += "  },";
 
-  document.getElementById("outputCode").value = jsOutput;
+  document.getElementById("outputCode").value = output;
   document.getElementById("outputArea").style.display = "block";
 }
 
 function copyToClipboard() {
-  const output = document.getElementById("outputCode");
-  output.select();
+  const ta = document.getElementById("outputCode");
+  ta.select();
   document.execCommand("copy");
-  alert("✅ Copied to clipboard! Paste it inside flashcardData in decks.js");
+  alert("✅ Copied! Paste it inside the flashcardData object in decks.js");
 }
 </script>
 </body>
