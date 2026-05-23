@@ -615,12 +615,6 @@ modeSelect.onchange = () => { currentMode = modeSelect.value; showQuestion(); };
 // Init
 populateMainTopics();
 </script>
-<!-- Converter Button (Top Right) -->
-<button onclick="openConverter()" 
-        style="position:fixed; top:15px; right:15px; background:#ff9fcf; color:white; border:none; padding:10px 18px; border-radius:999px; font-weight:600; box-shadow:0 4px 15px rgba(0,0,0,0.15); z-index:1000; font-size:1rem;">
-    ✨ Converter Tool
-</button>
-
 <!-- Converter Button -->
 <button onclick="openConverter()" 
         style="position:fixed; top:15px; right:15px; background:#ff9fcf; color:white; border:none; padding:12px 18px; border-radius:999px; font-weight:600; box-shadow:0 4px 15px rgba(0,0,0,0.15); z-index:1000;">
@@ -650,13 +644,17 @@ populateMainTopics();
 </div>
 
 <script>
-// Converter - No quotes on subtopic
+// Converter - Subtopics with _ instead of spaces
 function openConverter() {
   document.getElementById("converterModal").style.display = "flex";
 }
 
 function closeConverter() {
   document.getElementById("converterModal").style.display = "none";
+}
+
+function toJSKey(str) {
+  return str.trim().replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '');
 }
 
 function convertText() {
@@ -675,11 +673,12 @@ function convertText() {
       continue;
     }
 
-    // New Topic (no comma)
+    // New Topic
     if (!line.includes(',')) {
       if (currentTopic) output += "    ],\n";
       currentTopic = line;
-      output += `    ${currentTopic}: [\n`;   // ← No quotes as requested
+      const jsKey = toJSKey(currentTopic);
+      output += `    ${jsKey}: [\n`;
       continue;
     }
 
@@ -716,7 +715,7 @@ function copyToClipboard() {
   const ta = document.getElementById("outputCode");
   ta.select();
   document.execCommand("copy");
-  alert("✅ Copied! Paste inside flashcardData {}");
+  alert("✅ Copied! Paste inside flashcardData in decks.js");
 }
 </script>
 </body>
