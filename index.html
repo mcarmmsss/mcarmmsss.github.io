@@ -623,12 +623,12 @@ populateMainTopics();
 
 <!-- Converter Modal -->
 <div id="converterModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:9999; align-items:center; justify-content:center;">
-  <div class="card" style="width:92%; max-width:720px; max-height:92vh; overflow:auto; padding:20px;">
+  <div class="card" style="width:92%; max-width:760px; max-height:92vh; overflow:auto; padding:20px;">
     <h2>🌸 Text to Flashcard Converter 🌸</h2>
     <p>Paste your classmates' text here:</p>
     
     <textarea id="inputText" rows="14" style="width:100%; font-family:monospace; font-size:0.95rem;" 
-      placeholder="Thailand&#10;Traditional thai home&#10;baan ruen thai, traditional thai home&#10;ruen mai bua, northern thai home also known as ruen khrung phook the oldest of thai house, https://..."></textarea>
+      placeholder="Thailand&#10;Traditional thai home&#10;baan ruen thai, traditional thai home&#10;..."></textarea>
     
     <div style="margin:15px 0;">
       <button onclick="convertText()" style="padding:12px 22px;">Convert to Code ♡</button>
@@ -636,15 +636,15 @@ populateMainTopics();
     </div>
 
     <div id="outputArea" style="display:none;">
-      <p><strong>✅ Converted Code (ready to paste):</strong></p>
-      <textarea id="outputCode" rows="18" style="width:100%; font-family:monospace; background:#fff5f9;" readonly></textarea>
+      <p><strong>✅ Converted Code - Paste this inside flashcardData:</strong></p>
+      <textarea id="outputCode" rows="22" style="width:100%; font-family:monospace; background:#fff5f9; font-size:0.9rem; line-height:1.5;" readonly></textarea>
       <button onclick="copyToClipboard()" style="margin-top:8px;">📋 Copy Code</button>
     </div>
   </div>
 </div>
 
 <script>
-// Converter - Subtopics with _ instead of spaces
+// Best version - 2 space indentation
 function openConverter() {
   document.getElementById("converterModal").style.display = "flex";
 }
@@ -664,7 +664,7 @@ function convertText() {
   const lines = input.split('\n').map(l => l.trim()).filter(l => l);
   let currentCountry = "";
   let currentTopic = "";
-  let output = "";
+  let output = "\n";
 
   for (let line of lines) {
     if (!currentCountry) {
@@ -673,8 +673,8 @@ function convertText() {
       continue;
     }
 
-    // New Topic
     if (!line.includes(',')) {
+      // New subtopic
       if (currentTopic) output += "    ],\n";
       currentTopic = line;
       const jsKey = toJSKey(currentTopic);
@@ -682,7 +682,7 @@ function convertText() {
       continue;
     }
 
-    // Term, Definition, Image
+    // Card
     const parts = line.split(',').map(p => p.trim()).filter(p => p);
     if (parts.length === 0) continue;
 
@@ -715,7 +715,7 @@ function copyToClipboard() {
   const ta = document.getElementById("outputCode");
   ta.select();
   document.execCommand("copy");
-  alert("✅ Copied! Paste inside flashcardData in decks.js");
+  alert("✅ Copied!\n\nPaste it **before** the last } of flashcardData object.");
 }
 </script>
 </body>
