@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>🌸 Mc's Workspace 🌸</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <title>Mc's Quiz Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:opsz,wght@9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     body { margin:0; font-family:'Montserrat',sans-serif; background:#ffeaf3 url('images/bg.jpg') center/cover no-repeat fixed; color:#5a3b4d; min-height:100vh; }
     header { text-align:center; padding:20px; font-size:2.2rem; font-weight:600; background:#ffd6e8; border-bottom:4px solid #ff9fcf; }
@@ -65,7 +65,7 @@
       border-color: #ff7fbf;
     }
     #toggleImages:checked::after {
-      content: "♡";
+      content: "";
       position: absolute;
       top: 50%;
       left: 50%;
@@ -74,14 +74,170 @@
       font-size: 1.8rem;
       font-weight: bold;
     }
+
+    :root {
+      --ink: #2b2428;
+      --muted: #806f78;
+      --rose: #df8ca5;
+      --rose-dark: #ba647f;
+      --line: rgba(255,255,255,0.72);
+      --glass: rgba(255,255,255,0.64);
+      --shadow: 0 24px 70px rgba(104,55,72,0.18);
+    }
+
+    * { box-sizing:border-box; }
+    body {
+      font-family:'Manrope',sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 12% 20%, rgba(255,255,255,0.82) 0 8%, transparent 30%),
+        radial-gradient(circle at 86% 12%, rgba(247,167,184,0.8), transparent 34%),
+        linear-gradient(135deg, #d98fa8 0%, #f7d3d9 46%, #f2b6bc 100%);
+      overflow-x:hidden;
+    }
+    body::before {
+      content:"";
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      opacity:0.22;
+      background:linear-gradient(115deg, transparent 0 48%, rgba(255,255,255,0.7) 49% 50%, transparent 51% 100%);
+      background-size:360px 360px;
+    }
+    header {
+      position:relative;
+      z-index:2;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      max-width:1400px;
+      margin:22px auto 0;
+      padding:18px 150px 18px 28px;
+      color:var(--ink);
+      text-align:left;
+      font-size:1.2rem;
+      letter-spacing:0.02em;
+      background:rgba(255,255,255,0.35);
+      border:1px solid rgba(255,255,255,0.65);
+      border-radius:28px;
+      box-shadow:0 12px 34px rgba(113,64,80,0.1);
+      backdrop-filter:blur(18px);
+    }
+    .page-link {
+      position:absolute;
+      right:22px;
+      top:50%;
+      transform:translateY(-50%);
+      padding:10px 16px;
+      color:white;
+      background:var(--ink);
+      border-radius:14px;
+      font-size:0.78rem;
+      font-weight:700;
+      text-decoration:none;
+    }
+    .page-link:hover { background:var(--rose-dark); }
+    .container {
+      position:relative;
+      z-index:1;
+      grid-template-columns:minmax(0, 1.55fr) minmax(320px, 0.85fr);
+      gap:24px;
+      max-width:1400px;
+      padding:24px 20px 42px;
+    }
+    .card {
+      background:linear-gradient(135deg, rgba(255,255,255,0.76), rgba(255,232,240,0.47));
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:28px;
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(22px);
+    }
+    .card:first-child { min-height:640px; }
+    h2 {
+      margin:0 0 24px;
+      color:var(--ink);
+      font-family:'Fraunces',serif;
+      font-size:clamp(1.5rem, 2.2vw, 2.1rem);
+      font-weight:600;
+      letter-spacing:-0.02em;
+    }
+    select,input,textarea {
+      color:var(--ink);
+      background:rgba(255,255,255,0.68);
+      border:1px solid rgba(255,255,255,0.92);
+      border-radius:16px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.8);
+      font-family:'Manrope',sans-serif;
+    }
+    select:focus,input:focus,textarea:focus { outline:2px solid rgba(186,100,127,0.35); }
+    textarea { min-height:150px; resize:vertical; }
+    label { color:var(--rose-dark); }
+    button {
+      background:var(--ink);
+      padding:12px 18px;
+      border-radius:16px;
+      font-family:'Manrope',sans-serif;
+      font-size:0.82rem;
+      letter-spacing:0.01em;
+      transition:transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+    button:hover:not(:disabled) {
+      background:var(--rose-dark);
+      box-shadow:0 8px 18px rgba(186,100,127,0.22);
+      transform:translateY(-2px);
+    }
+    button:disabled { background:#9d8d94; }
+    .choices {
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:10px;
+      margin:20px 0;
+    }
+    .choices button { width:100%; min-width:0; margin:0; background:rgba(255,255,255,0.78); color:var(--ink); border:1px solid rgba(255,255,255,0.9); text-align:left; }
+    .choices button:hover:not(:disabled) { color:white; }
+    #question { color:var(--ink); }
+    #question img.question-img { max-width:72%; max-height:270px; border-radius:22px; box-shadow:0 18px 32px rgba(104,55,72,0.16); }
+    #question > div:first-child { color:var(--rose-dark) !important; letter-spacing:0.08em; text-transform:uppercase; font-size:0.7rem !important; }
+    #score, #savedScore { color:var(--rose-dark); font-weight:700; }
+    .timer { color:var(--ink); font-family:'Fraunces',serif; font-size:3rem; }
+    .sticker {
+      z-index:4;
+      opacity:0.84;
+      filter:saturate(0.82) brightness(1.12) contrast(0.92) drop-shadow(0 12px 10px rgba(104,55,72,0.15));
+    }
+    body > img.sticker:nth-of-type(1) { bottom:28px !important; right:42px !important; }
+    body > img.sticker:nth-of-type(2) { top:112px !important; left:-8px !important; width:62px !important; }
+    body > img.sticker:nth-of-type(3) { bottom:18px !important; left:8px !important; width:56px !important; }
+    body > img.sticker:nth-of-type(4) { top:132px !important; right:-6px !important; width:62px !important; }
+    body > img.sticker:nth-of-type(5) { bottom:208px !important; right:142px !important; }
+    #customizer { background:rgba(255,255,255,0.46); border:1px solid rgba(255,255,255,0.8); }
+    @media (max-width:760px) {
+      header { margin:10px; padding:16px 132px 16px 18px; border-radius:20px; font-size:1rem; }
+      .container { grid-template-columns:1fr; padding:12px 12px 28px; }
+      .card { padding:20px 16px; border-radius:22px; }
+      .card:first-child { min-height:0; }
+      .choices { grid-template-columns:1fr; }
+      #question img.question-img { max-width:100%; }
+      .card button { min-height:44px; }
+      .card > button { width:100%; margin:5px 0; }
+      #converterModal .card { padding:18px 14px; }
+      body > button[onclick="openConverter()"] { top:12px !important; right:12px !important; padding:10px 13px !important; font-size:0.78rem !important; }
+      body > img.sticker:nth-of-type(1) { right:12px !important; bottom:14px !important; width:58px !important; }
+      body > img.sticker:nth-of-type(2) { top:104px !important; left:-12px !important; width:52px !important; }
+      body > img.sticker:nth-of-type(3) { left:-8px !important; bottom:12px !important; width:48px !important; }
+      body > img.sticker:nth-of-type(4) { top:124px !important; right:-12px !important; width:52px !important; }
+      body > img.sticker:nth-of-type(5) { right:86px !important; bottom:156px !important; width:48px !important; }
+      .sticker { opacity:0.62; }
+    }
   </style>
 </head>
 <body>
-<header>🌸 Mc's Workspace 🌸 💕</header>
+<header>Mc's Quiz Site<a class="page-link" href="notebook.html">Open Notebook</a></header>
 <div class="container">
   <!-- FLASHCARDS -->
   <div class="card">
-    <h2>📚 Flashcards 💖</h2>
+    <h2>Flashcards</h2>
     <select id="mainTopicSelect"></select>
     <select id="subjectSelect" disabled style="margin:10px 0;"></select>
     <select id="deckSelect" disabled></select>
@@ -94,36 +250,36 @@
     <!-- image toggle -->
     <label style="display:flex; align-items:center; gap:4px; margin:12px 0; font-size:1.1rem; color:#ff7fbf; cursor:pointer;">
       <input type="checkbox" id="toggleImages" checked>
-      Show images in questions ♡
+      Show images in questions
     </label>
 
     <div id="question" style="font-size:1.4rem; margin:20px 0; text-align:center;"></div>
     <div id="choices" class="choices"></div>
     <div id="typedArea" style="display:none;">
       <input type="text" id="typedAnswer" placeholder="Type the term/name here...">
-      <button onclick="checkTyped()">Submit ♡</button>
+      <button onclick="checkTyped()">Submit</button>
       <div id="feedback"></div>
     </div>
-    <p>Score: <span id="score">0</span> 🎀 <span id="savedScore"></span></p>
-    <button id="nextBtn" onclick="nextQuestion()" disabled>Next ♡</button>
+    <p>Score: <span id="score">0</span> <span id="savedScore"></span></p>
+    <button id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
   </div>
   <!-- SIDE PANEL -->
   <div class="card">
-    <h2>📝 Notes 🎀</h2>
-    <textarea placeholder="Sulat ka dito nak... 💭"></textarea>
-    <h2>⏱ Pomodoro</h2>
+    <h2>Notes</h2>
+    <textarea placeholder="Sulat ka dito nak..."></textarea>
+    <h2>Pomodoro</h2>
     <div style="text-align:center; margin:15px 0;">
       <img src="images/hello-kitty-study.png" style="width:140px; margin-bottom:10px;" alt="kitty studying">
-      <p style="color:#ff9fcf; font-weight:600;">Word Hard Vro! ♡</p>
+      <p style="color:#ff9fcf; font-weight:600;">Word Hard Vro!</p>
     </div>
     <input id="activityInput" placeholder="What are you working on right now?">
     <div class="timer" id="timer">25:00</div>
-    <button onclick="startPomodoro()">Start Your Session 🎀</button>
-    <button onclick="pausePomodoro()">Pause ⏸️</button>
-    <button onclick="resetPomodoro()">Reset ♡</button>
-    <button onclick="testSound()" style="background:#ffb6c1; margin-left:10px;">Test Sound ♡</button>
+    <button onclick="startPomodoro()">Start Your Session</button>
+    <button onclick="pausePomodoro()">Pause</button>
+    <button onclick="resetPomodoro()">Reset</button>
+    <button onclick="testSound()" style="background:#ffb6c1; margin-left:10px;">Test Sound</button>
     <ul id="log" style="list-style:none; padding:0; margin-top:15px;"></ul>
-    <button onclick="toggleCustomizer()" style="margin-top:20px; background:#ff69b4;">✨ Customize Stickers</button>
+    <button onclick="toggleCustomizer()" style="margin-top:20px; background:#ff69b4;">Customize Stickers</button>
     <div id="customizer">
       <h2 style="margin-top:0;">🎀 Change Your Stickers!</h2>
       <p style="font-size:0.9rem; color:#888;">File names or URLs ♡</p>
@@ -133,7 +289,7 @@
       <label>Kuromi:</label><input id="img4" value="kuromi.png">
       <label>Extra Hello Kitty:</label><input id="img5" value="hello-kitty2.png">
       <label>Study Kitty:</label><input id="imgStudy" value="hello-kitty-study.png">
-      <button onclick="updateImages()" style="background:#ff69b4; margin-top:15px;">Update ♡</button>
+      <button onclick="updateImages()" style="background:#ff69b4; margin-top:15px;">Update</button>
     </div>
   </div>
 </div>
@@ -151,7 +307,7 @@
   Your browser doesn't support audio.
 </audio>
 
-<script src="decks.js"></script>
+<script src="decks.js?v=46"></script>
 <script>
 // ──────────────────────────────────────────────
 // Flashcard logic with image toggle n skip image-only cards when images off
@@ -544,7 +700,7 @@ function startPomodoro() {
     time--;
     updateTimer();
   }, 1000);
-  document.querySelector('button[onclick="pausePomodoro()"]').textContent = "Pause ⏸️";
+  document.querySelector('button[onclick="pausePomodoro()"]').textContent = "Pause";
 }
 
 function pausePomodoro() {
@@ -553,7 +709,7 @@ function pausePomodoro() {
     clearInterval(interval);
     interval = null;
     isPaused = true;
-    document.querySelector('button[onclick="pausePomodoro()"]').textContent = "Resume ▶️";
+    document.querySelector('button[onclick="pausePomodoro()"]').textContent = "Resume";
   } else if (isPaused) {
     isPaused = false;
     startPomodoro();
@@ -566,7 +722,7 @@ function resetPomodoro() {
   isPaused = false;
   time = 1500;
   updateTimer();
-  document.querySelector('button[onclick="pausePomodoro()"]').textContent = "Pause ⏸️";
+  document.querySelector('button[onclick="pausePomodoro()"]').textContent = "Pause";
 }
 
 function updateTimer() {
@@ -619,13 +775,13 @@ populateMainTopics();
 <!-- Simple Converter Button -->
 <button onclick="openConverter()" 
         style="position:fixed; top:15px; right:15px; background:#ff9fcf; color:white; border:none; padding:10px 16px; border-radius:999px; font-weight:600; box-shadow:0 4px 12px rgba(0,0,0,0.15); z-index:1000; font-size:0.95rem;">
-    ✨ Converter
+    Converter
 </button>
 
 <!-- Converter Modal -->
 <div id="converterModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.8); z-index:9999; align-items:center; justify-content:center;">
   <div class="card" style="width:96%; max-width:850px; max-height:94vh; overflow:auto; padding:25px;">
-    <h2>🌸 Flashcard Converter 🌸</h2>
+    <h2>Flashcard Converter</h2>
     
     <label><strong>Select Main Group:</strong></label>
     <select id="groupSelect" style="width:100%; padding:12px; margin:10px 0; font-size:1rem;"></select>
@@ -635,14 +791,14 @@ populateMainTopics();
       placeholder="Thailand&#10;Traditional thai home&#10;baan ruen thai, traditional thai home&#10;ruen mai bua, northern thai home..."></textarea>
 
     <div style="margin:20px 0;">
-      <button onclick="generateFullDecksJS()" style="padding:12px 24px;">Generate Full decks.js ♡</button>
+      <button onclick="generateFullDecksJS()" style="padding:12px 24px;">Generate Full decks.js</button>
       <button onclick="closeConverter()" style="background:#ccc; margin-left:12px; padding:12px 24px;">Close</button>
     </div>
 
     <div id="converterOutputArea" style="display:none;">
-      <p><strong>✅ Full decks.js Content (Replace entire file):</strong></p>
+      <p><strong>Full decks.js Content (Replace entire file):</strong></p>
       <textarea id="converterOutput" rows="28" style="width:100%; font-family:monospace; background:#fff5f9; font-size:0.88rem; line-height:1.4;" readonly></textarea>
-      <button onclick="copyFullCode()" style="margin-top:10px; padding:12px 20px;">📋 Copy Full Code</button>
+      <button onclick="copyFullCode()" style="margin-top:10px; padding:12px 20px;">Copy Full Code</button>
     </div>
   </div>
 </div>

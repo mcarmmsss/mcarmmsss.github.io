@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notebook | Mc's Quiz Site</title>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Fraunces:opsz,wght@9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#2b2428; --muted:#806f78; --rose:#df8ca5; --rose-dark:#ba647f; --shadow:0 24px 70px rgba(104,55,72,0.18); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; color:var(--ink); font-family:'Manrope',sans-serif; background:radial-gradient(circle at 12% 20%, rgba(255,255,255,0.82) 0 8%, transparent 30%), radial-gradient(circle at 86% 12%, rgba(247,167,184,0.8), transparent 34%), linear-gradient(135deg,#d98fa8 0%,#f7d3d9 46%,#f2b6bc 100%); overflow-x:hidden; }
+    body::before { content:""; position:fixed; inset:0; pointer-events:none; opacity:0.22; background:linear-gradient(115deg,transparent 0 48%,rgba(255,255,255,0.7) 49% 50%,transparent 51% 100%); background-size:360px 360px; }
+    header { position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; max-width:1400px; margin:22px auto 0; padding:18px 28px; color:var(--ink); font-size:1.2rem; font-weight:700; background:rgba(255,255,255,0.35); border:1px solid rgba(255,255,255,0.65); border-radius:28px; box-shadow:0 12px 34px rgba(113,64,80,0.1); backdrop-filter:blur(18px); }
+    .back-link { padding:10px 16px; color:white; background:var(--ink); border-radius:14px; font-size:0.78rem; text-decoration:none; }
+    .back-link:hover { background:var(--rose-dark); }
+    .notebook { position:relative; z-index:1; width:min(1400px,calc(100% - 40px)); margin:24px auto 42px; padding:34px clamp(20px,4vw,58px); background:linear-gradient(135deg,rgba(255,255,255,0.79),rgba(255,219,231,0.55)); border:1px solid rgba(255,255,255,0.86); border-radius:28px; box-shadow:var(--shadow); backdrop-filter:blur(22px); overflow:hidden; }
+    .notebook::before { content:""; position:absolute; top:0; bottom:0; left:28px; width:2px; background:rgba(220,125,151,0.28); box-shadow:8px 0 rgba(220,125,151,0.12); }
+    .intro, .controls, .term-table { position:relative; padding-left:28px; }
+    h1 { margin:0 0 10px; font-family:'Fraunces',serif; font-size:clamp(2rem,4vw,3.4rem); }
+    .intro p { margin:0 0 26px; color:var(--muted); font-size:0.92rem; }
+    .controls { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:26px; }
+    select { width:100%; margin:0; padding:12px 14px; color:var(--ink); background:rgba(255,255,255,0.7); border:1px solid rgba(255,255,255,0.92); border-radius:16px; font:inherit; }
+    select:focus { outline:2px solid rgba(186,100,127,0.35); }
+    .term-table { display:grid; gap:10px; }
+    .term-row { display:grid; grid-template-columns:minmax(160px,0.7fr) minmax(0,1.3fr); gap:18px; align-items:center; padding:16px 18px; background:rgba(255,255,255,0.54); border:1px solid rgba(255,255,255,0.78); border-radius:16px; }
+    .term-row:nth-child(even) { background:rgba(255,232,240,0.52); }
+    .term-row strong, .term-row span, .term-empty { font-family:'Caveat',cursive; line-height:1.25; }
+    .term-row img { width:96px; height:72px; object-fit:cover; border-radius:12px; border:1px solid rgba(255,255,255,0.9); box-shadow:0 8px 16px rgba(104,55,72,0.12); }
+    .term-row strong { color:var(--rose-dark); font-size:1.55rem; }
+    .term-row span { font-size:1.35rem; }
+    .term-empty { padding:28px; color:var(--muted); text-align:center; font-size:1.45rem; }
+    .kitty { position:fixed; z-index:1; width:78px; opacity:0.68; filter:saturate(0.82) brightness(1.12) contrast(0.92) drop-shadow(0 12px 10px rgba(104,55,72,0.15)); pointer-events:none; }
+    .kitty-left { bottom:34px; left:22px; }
+    .kitty-right { top:118px; right:22px; }
+    @media (max-width:760px) {
+      header { margin:10px; padding:16px 18px; border-radius:20px; font-size:1rem; }
+      .back-link { padding:9px 12px; font-size:0.7rem; }
+      .notebook { width:calc(100% - 24px); margin-top:12px; padding:26px 14px 26px 18px; border-radius:22px; }
+      .notebook::before { left:14px; }
+      .intro, .controls, .term-table { padding-left:20px; }
+      .controls { grid-template-columns:1fr; gap:8px; }
+      .term-row { grid-template-columns:1fr; gap:8px; padding:14px; }
+      .term-row strong { font-size:1.45rem; }
+      .term-row span { font-size:1.25rem; }
+      .kitty { width:52px; opacity:0.5; }
+      .kitty-right { top:124px; right:-10px; }
+      .kitty-left { bottom:18px; left:-8px; }
+    }
+  </style>
+</head>
+<body>
+  <header>Mc's Quiz Site<a class="back-link" href="index.html">Back to Quiz</a></header>
+  <main class="notebook">
+    <section class="intro">
+      <h1>Notebook</h1>
+      <p>Choose a course, subject, and deck to review each term and its meaning.</p>
+    </section>
+    <section class="controls" aria-label="Notebook filters">
+      <select id="notebookTopicSelect" aria-label="Notebook course"></select>
+      <select id="notebookSubjectSelect" aria-label="Notebook subject" disabled></select>
+      <select id="notebookDeckSelect" aria-label="Notebook deck" disabled></select>
+    </section>
+    <section id="termTable" class="term-table" aria-live="polite">
+      <div class="term-empty">Choose a course, subject, and deck to open your notes.</div>
+    </section>
+  </main>
+  <img class="kitty kitty-left" src="images/hello-kitty2.png" alt="">
+  <img class="kitty kitty-right" src="images/my-melody.png" alt="">
+  <script src="decks.js?v=47"></script>
+  <script>
+    const topicSelect = document.getElementById("notebookTopicSelect");
+    const subjectSelect = document.getElementById("notebookSubjectSelect");
+    const deckSelect = document.getElementById("notebookDeckSelect");
+    const termTable = document.getElementById("termTable");
+
+    function fillTopics() {
+      topicSelect.innerHTML = '<option value="">Select Course / Region</option>';
+      [...mainTopics].sort().forEach(topic => {
+        const option = document.createElement("option");
+        option.value = topic;
+        option.textContent = topic;
+        topicSelect.appendChild(option);
+      });
+    }
+
+    function clearTable() {
+      termTable.innerHTML = '<div class="term-empty">Choose a course, subject, and deck to open your notes.</div>';
+    }
+
+    topicSelect.onchange = () => {
+      const topic = topicSelect.value;
+      subjectSelect.innerHTML = '<option value="">Select Subject / Period</option>';
+      subjectSelect.disabled = !topic;
+      deckSelect.innerHTML = '<option value="">Select Deck</option>';
+      deckSelect.disabled = true;
+      clearTable();
+      if (topic && mainToSubjects[topic]) {
+        [...mainToSubjects[topic]].sort().forEach(subject => {
+          const option = document.createElement("option");
+          option.value = `${topic}_${subject}`;
+          option.textContent = subject;
+          subjectSelect.appendChild(option);
+        });
+      }
+    };
+
+    subjectSelect.onchange = () => {
+      const subjectKey = subjectSelect.value;
+      deckSelect.innerHTML = '<option value="">Select Deck</option>';
+      deckSelect.disabled = !subjectKey;
+      clearTable();
+      if (subjectKey && subjectToDecks[subjectKey]) {
+        [...subjectToDecks[subjectKey]].sort().forEach(deckName => {
+          const option = document.createElement("option");
+          option.value = `${subjectKey}_${deckName}`;
+          option.textContent = deckName.replace(/_/g, " ");
+          deckSelect.appendChild(option);
+        });
+      }
+    };
+
+    deckSelect.onchange = () => {
+      termTable.innerHTML = "";
+      const cards = decks[deckSelect.value] || [];
+      cards.forEach(card => {
+        const row = document.createElement("div");
+        row.className = "term-row";
+        const term = document.createElement("strong");
+        term.textContent = card[0] || "Untitled";
+        const meaning = document.createElement("span");
+        meaning.textContent = card[1] || "No description yet.";
+        row.append(term, meaning);
+        if (card[2]) {
+          const image = document.createElement("img");
+          image.src = card[2];
+          image.alt = `${card[0] || "Term"} reference`;
+          row.appendChild(image);
+        }
+        termTable.appendChild(row);
+      });
+      if (!cards.length) clearTable();
+    };
+
+    fillTopics();
+  </script>
+</body>
+</html>
